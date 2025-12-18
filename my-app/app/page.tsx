@@ -7,7 +7,7 @@ export default function Home() {
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight transition-colors duration-300 hover:text-[#9E0000]">
         My first Next.js site
       </h1>
-      <p className="max-w-lg text-lg text-gray-700">
+      <p className="max-w-lg text-lg text-gray-200">
         Learning tailwindcss and next.js together!
       </p>
       

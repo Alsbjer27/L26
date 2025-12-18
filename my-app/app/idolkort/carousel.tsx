@@ -1,141 +1,69 @@
 "use client";
 
-import * as THREE from 'three'
-import { useRef, useState } from 'react'
-import { Canvas, useFrame, ThreeEvent} from '@react-three/fiber'
-import { Image, Environment } from '@react-three/drei'
-import { easing } from "maath"
-import "./util";
+import { div } from "three/tsl";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-export default function CarouselScene(){
-    return (
-        <Canvas camera ={{ position: [0, 0, 10], fov: 15}}
-                gl = {{antialias: true}}
-        >
-            <fog attach="fog" args={["#000", 8, 14]} />
-            <Rig>
-                <Carousel />
-            </Rig>
+function Carousel(){
 
-            <Environment preset="dawn" />
-        </Canvas>
-    );
-}
-
-function Rig({ children }: { children: React.ReactNode }) {
-    const group = useRef<THREE.Group>(null);
-    const dragging = useRef(false);
-    const lastX = useRef(0);
-    const velocity = useRef(0);
-
-    const onPointerDown = (e: ThreeEvent<PointerEvent>) => {
-        dragging.current = true;
-        lastX.current = e.clientX;
-    };
-
-    const onPointerUp = () => {
-        dragging.current = false;
-    };
-
-    const onPointerMove = (e: ThreeEvent<PointerEvent>) => {
-        if (!dragging.current) return;
-        const delta = e.clientX - lastX.current;
-        lastX.current = e.clientX;
-        velocity.current = delta * 0.0005;
-    };
-
-    useFrame((_, delta) => {
-        if (!group.current) return;
-
-        group.current.rotation.y += velocity.current;
-        velocity.current *=0.4;
-
-        easing.damp(group.current.rotation, "y", group.current.rotation.y, 0.3, delta);
-    });
-
-    return (
-        <group ref={group}>
-            <mesh 
-                onPointerDown={onPointerDown}
-                onPointerUp={onPointerUp}
-                onPointerOut={onPointerUp}
-                onPointerMove={onPointerMove}
-                position={[0, 0, 0]}
-            >
-                <planeGeometry args={[20, 20]} />
-                <meshBasicMaterial transparent opacity={0} />
-            </mesh>
-            {children}
-        </group>
-    );
-}
-
-function Carousel({radius = 2, count = 3}){
-    return (
-    <>
-      {Array.from({ length: count }, (_, i) => {
-        const angle = (i / count) * Math.PI * 2;
-        return (
-          <Card
-            key={i}
-            url={`/img${(i % 10) + 1}_.png`}
-            position={[
-              Math.sin(angle) * radius,
-              0,
-              Math.cos(angle) * radius,
-            ]}
-            rotation={[0, Math.PI + angle, 0]}
-          />
-        );
-      })}
-    </>
-  );
-}
-
-function Card({
-  url,
-  ...props
-}: {
-  url: string;
-  position: [number, number, number];
-  rotation: [number, number, number];
-}) {
-  const ref = useRef<THREE.Mesh>(null);
-  const [hovered, setHovered] = useState(false);
-
-  useFrame((_, delta) => {
-    if (!ref.current) return;
-
-    easing.damp3(
-      ref.current.scale,
-      hovered ? [1.15, 1.15, 1.15] : [1, 1, 1],
-      0.2,
-      delta
-    );
-
-    easing.damp(
-      (ref.current.material as any),
-      "zoom",
-      hovered ? 1 : 1.4,
-      0.2,
-      delta
-    );
-  });
+const settings = {
+    dots: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 3,
+    slidesToScroll: 1
+  };
 
   return (
-    <Image
-      ref={ref}
-      url={url}
-      transparent
-      side={THREE.DoubleSide}
-      onPointerOver={(e) => {
-        e.stopPropagation();
-        setHovered(true);
-      }}
-      onPointerOut={() => setHovered(false)}
-      {...props}
-    >
-      <planeGeometry args={[1, 1, 20, 20]} />
-    </Image>
-  );
+    <div className="w-3/4 m-auto bg-gray-200">
+      <div className="mt-20">
+        <Slider {...settings} className="rounded-xl">
+        {data.map((d) =>(
+          <div className="bg-white h-[450px] text-black rounded-xl">
+            <div className="rounded-t-xl bg-indigo-500 flex justify-center items-center">
+              <img src={d.img} alt="Legionär" className="h-50 w-50"/>
+            </div>
+
+            <div className="flex flex-col justify-center items-center gap-4 p-4">
+              <p className="text-xl font-semibold">{d.name}</p>
+              <p className="text-center line-clamp-2">{d.review}</p>
+              <button className="bg-red-500 hover:bg-red-700 text-white text-lg px-6 py-1 rounded-xl cursor-pointer">Read More</button>
+            </div>
+          </div>
+        ))}
+        </Slider>
+      </div>
+    </div>
+  )
 }
+
+const data = [
+  {
+    name: "John Doe",
+    img: "./img1_.png",
+    review: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    name: "Jane Smith",
+    img: "./img2_.png",
+    review: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  {
+    name: "Johnny Johnsson",
+    img: "./img3_.png",
+    review: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  },
+  {
+    name: "Johnny Johnsson",
+    img: "./img3_.png",
+    review: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  },
+  {
+    name: "Johnny Johnsson",
+    img: "./img2_.png",
+    review: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  }
+]
+
+export default Carousel;
