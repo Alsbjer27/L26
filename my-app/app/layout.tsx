@@ -35,9 +35,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${medievalSharp.variable} antialiased` }
-      >
+      <body className="antialiased">
+        <header className="h-14 flex items-center text-5xl justify-center font-medieval">
+          LEGIONEN
+        </header>
+
        <SidebarProvider>
           <AppSidebar />
             <SidebarTrigger/>
