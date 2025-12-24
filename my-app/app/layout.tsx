@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { MedievalSharp } from "next/font/google";
 import "./globals.css";
+
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/app-sidebar"
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -10,6 +15,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const medievalSharp = MedievalSharp({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-medieval",
 });
 
 export const metadata: Metadata = {
@@ -25,9 +36,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${medievalSharp.variable} antialiased` }
       >
-        {children}
+       <SidebarProvider>
+          <AppSidebar />
+            <SidebarTrigger/>
+              <main>
+                {children}
+              </main>
+        </SidebarProvider>
       </body>
     </html>
   );

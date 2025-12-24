@@ -21,7 +21,7 @@ const settings = {
         <Slider {...settings} className="rounded-xl">
         {data.map((d) =>(
           <div className="bg-white h-[450px] text-black rounded-xl">
-            <div className="rounded-t-xl bg-indigo-500 flex justify-center items-center">
+            <div className="rounded-t-xl bg-red-500 flex justify-center items-center">
               <img src={d.img} alt="Legionär" className="h-50 w-50"/>
             </div>
 
