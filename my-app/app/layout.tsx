@@ -39,14 +39,14 @@ export default function RootLayout({
         <header className="h-14 flex items-center text-5xl justify-center font-medieval">
           LEGIONEN
         </header>
-
+        <main>
+          {children}
+        </main>
        <SidebarProvider>
           <AppSidebar />
             <SidebarTrigger/>
-              <main>
-                {children}
-              </main>
         </SidebarProvider>
+        
       </body>
     </html>
   );

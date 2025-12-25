@@ -1,4 +1,5 @@
 import { Calendar, Home, Search, Settings } from "lucide-react"
+import Link from "next/link"
 
 import {
   Sidebar,
@@ -15,7 +16,7 @@ import {
 const items = [
   {
     title: "Hem",
-    url: "#",
+    url: "/",
     icon: Home,
   },
   {
@@ -25,12 +26,12 @@ const items = [
   },
   {
     title: "Idolkort",
-    url: "#",
+    url: "/idolkort",
     icon: Search,
   },
   {
     title: "Phadderistspelet",
-    url: "#",
+    url: "/phadderistspelet",
     icon: Settings,
   },
 ]
