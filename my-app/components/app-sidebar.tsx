@@ -21,7 +21,7 @@ const items = [
   },
   {
     title: "Kalender",
-    url: "#",
+    url: "/kalender",
     icon: Calendar,
   },
   {
@@ -41,12 +41,12 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Legionen</SidebarGroupLabel>
+          <SidebarGroupLabel>Meny</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                <SidebarMenuItem key={item.title} >
+                  <SidebarMenuButton asChild className="hover:bg-red-700 hover:text-white">
                     <a href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
