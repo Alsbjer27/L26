@@ -36,18 +36,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <header className="h-14 flex items-center text-5xl justify-center font-medieval">
+        <div className="flex items-center text-5xl justify-center bg-red-700 text-white">
           LEGIONEN
-        </header>
+        </div>
         <SidebarProvider>
           <AppSidebar />
-            <SidebarTrigger className="hover:bg-red-700 hover:text-white"/>
+          <SidebarTrigger className="hover:bg-red-700 hover:text-white mt-2 ml-1"/>
         </SidebarProvider>
         <main>
           {children}
         </main>
-       
-        
       </body>
     </html>
   );
