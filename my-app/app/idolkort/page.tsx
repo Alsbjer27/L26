@@ -15,7 +15,7 @@ export default function Idolkort(){
       <CarouselContent>
         {Array.from({ length: 12 }).map((_, index) => (
           <CarouselItem key={index}>
-            <div className="p-1">
+            <div className="p-0.2">
               <Card>
                 <CardContent className="flex aspect-square items-center justify-center p-4">
                   <span className="text-4xl font-semibold">{index + 1}</span>

@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { MedievalSharp } from "next/font/google";
 import "./globals.css";
 
-import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar"
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
 
 
@@ -39,14 +39,15 @@ export default function RootLayout({
         <div className="flex items-center text-5xl justify-center bg-red-700 text-black hover:text-white duration-[500ms]">
           LEGIONEN
         </div>
-        <SidebarProvider>
-          <AppSidebar />
-          <SidebarTrigger className="hover:bg-red-700 hover:text-white duration-[300ms] mt-2 ml-1" />
-          <SidebarInset className="flex justify-center">
+        <div className="flex min-h-screen">
+          <SidebarProvider className="w-auto flex-none">
+            <AppSidebar />
+            <SidebarTrigger className="mt-2.5 ml-2 hover:bg-red-700 hover:text-white duration-[300ms]" />
+          </SidebarProvider>
+          <main className="flex flex-1 min-h-screen items-center justify-center px-6 py-4">
             {children}
-          </SidebarInset>
-        </SidebarProvider>
-        
+          </main>
+        </div>
       </body>
     </html>
   );
