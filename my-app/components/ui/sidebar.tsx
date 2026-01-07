@@ -266,14 +266,14 @@ function SidebarTrigger({
       data-slot="sidebar-trigger"
       variant="ghost"
       size="icon"
-      className={cn("size-7", className)}
+      className={cn("group size-7 hover:text-white", className)}
       onClick={(event) => {
         onClick?.(event)
         toggleSidebar()
       }}
       {...props}
     >
-      <PanelLeftIcon />
+      <PanelLeftIcon className="aspect-square size-7 stroke-current transition-colors duration-200 group-hover:stroke-current"/>
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   )

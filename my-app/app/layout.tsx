@@ -36,15 +36,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <div className="flex items-center text-5xl justify-center bg-red-700 text-black hover:text-white duration-[500ms]">
+        <div className="flex items-center text-5xl justify-center bg-red-700 text-black hover:text-white duration-500 fixed w-full">
           LEGIONEN
         </div>
-        <div className="flex min-h-screen">
+        <div className="flex min-h-screen w-full">
           <SidebarProvider className="w-auto flex-none">
             <AppSidebar />
-            <SidebarTrigger className="mt-2.5 ml-2 hover:bg-red-700 hover:text-white duration-[300ms]" />
+            <SidebarTrigger className="mt-2.5 ml-2 duration-300 absolute! left-0 z-20 hover:cursor-pointer" />
           </SidebarProvider>
-          <main className="flex flex-1 min-h-screen items-center justify-center px-6 py-4">
+          <main className="flex min-h-screen items-center justify-center px-6 py-4 w-full">
             {children}
           </main>
         </div>
