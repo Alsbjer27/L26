@@ -3,6 +3,6 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="text-center">Hello World!</div>
+    <div className="text-center"></div>
   );
 }
