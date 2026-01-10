@@ -60,21 +60,21 @@ export function NavigationMenuDemo() {
   <NavigationMenu viewport={isMobile}>
     <NavigationMenuList className="flex-wrap">
       {/* Direct link */}
-      <NavigationMenuItem>
+      <NavigationMenuItem className="border border-border/60 rounded-md  hover:text-red-600 hover:bg-gray-50">
         <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
           <Link href="/">Hem</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
 
       {/* Dropdown: Kalender */}
-      <NavigationMenuItem>
-        <NavigationMenuTrigger>Kalender</NavigationMenuTrigger>
+      <NavigationMenuItem className="hover:text-red-600 hover:bg-gray-50">
+        <NavigationMenuTrigger className="hover:cursor-pointer border border-border/60 rounded-md ">Kalender</NavigationMenuTrigger>
         <NavigationMenuContent>
           <div className="grid gap-2 p-4 md:w-[280px]">
             <NavigationMenuLink asChild>
               <Link
                 href="/kalender"
-                className="rounded-md p-2 hover:bg-accent hover:text-accent-foreground"
+                className="rounded-md p-2 hover:bg-gray-100 hover:text-accent-foreground"
               >
                 Grafiskdesign & Kommunikation
               </Link>
@@ -95,22 +95,22 @@ export function NavigationMenuDemo() {
       </NavigationMenuItem>
 
       {/* Direct link */}
-      <NavigationMenuItem>
+      <NavigationMenuItem className="border border-border/60 rounded-md  hover:text-red-600 hover:bg-gray-50">
         <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-          <Link href="/">Idolkort</Link>
+          <Link href="/idolkort">Idolkort</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
 
       {/* Direct link */}
-      <NavigationMenuItem>
+      <NavigationMenuItem className="border border-border/60 rounded-md  hover:text-red-600 hover:bg-gray-50">
         <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-          <Link href="/">Phadderistspelet</Link>
+          <Link href="/phadderistspelet">Phadderistspelet</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
 
       {/* Dropdown: Nolleboken */}
-      <NavigationMenuItem>
-        <NavigationMenuTrigger>Nolleboken</NavigationMenuTrigger>
+      <NavigationMenuItem className="border border-border/60 rounded-md hover:text-red-600 hover:bg-gray-50">
+        <NavigationMenuTrigger className="hover:cursor-pointer">Nolleboken</NavigationMenuTrigger>
         <NavigationMenuContent>
           <div className="grid gap-2 p-4 md:w-[280px]">
             <NavigationMenuLink asChild>
