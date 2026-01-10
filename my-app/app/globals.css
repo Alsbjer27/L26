@@ -2,8 +2,6 @@
 @import "tw-animate-css";
 
 /*--- FONTS ---*/
-
-
 :root {
   --radius: 0.625rem;
   --background: oklch(100% 0.00011 271.152);
@@ -75,8 +73,8 @@
 
 @layer base {
   :root {
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar: oklch(100% 0.00011 271.152);
+    --sidebar-foreground: oklch(0% 0 0);
     --sidebar-primary: oklch(0.205 0 0);
     --sidebar-primary-foreground: oklch(0.985 0 0);
     --sidebar-accent: oklch(0.97 0 0);
@@ -94,5 +92,9 @@
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.439 0 0);
+  }
+
+  body {
+    background-color: var(--background);
   }
 }
