@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <title>Legionen</title>
       <body className="w-full min-h-screen">
         <header className="sticky top-0 z-50 w-full bg-red-600">
-          <div className="mx-auto flex w-full max-w-9xl justify-center px-4 py-3 bg-linear-to-r from-red-600 from-0% via-black via-50% to-red-600 to-100%">
+          <div className="mx-auto flex w-full max-w-9xl justify-center px-4 py-3 bg-[linear-gradient(to_right,#dc2626_0%,#000000_20%,#000000_80%,#dc2626_100%)]">
             <NavigationMenuDemo />
           </div>
         </header>

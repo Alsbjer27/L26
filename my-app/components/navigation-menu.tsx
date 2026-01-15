@@ -60,21 +60,21 @@ export function NavigationMenuDemo() {
   <NavigationMenu viewport={isMobile}>
     <NavigationMenuList className="flex-wrap">
       {/* Direct link */}
-      <NavigationMenuItem className="bg-black text-white hover:border border-border/60 rounded-md">
+      <NavigationMenuItem className="bg-black text-white hover:text-gray-300">
         <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
           <Link href="/">Hem</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
 
       {/* Dropdown: Kalender */}
-      <NavigationMenuItem className="bg-black text-white hover:border border-border/60 rounded-md">
+      <NavigationMenuItem className="bg-black text-white hover:text-gray-300">
         <NavigationMenuTrigger className="hover:cursor-pointer">Kalender</NavigationMenuTrigger>
         <NavigationMenuContent className="mt-10">
           <div className="grid gap-2 p-4 md:w-[280px]">
             <NavigationMenuLink asChild>
               <Link
                 href="/kalender"
-                className="rounded-md p-2 hover:bg-gray-100 hover:text-accent-foreground text-black"
+                className="rounded-md p-2 hover:border-indigo-500 hover:bg-gray-200 hover:text-accent-foreground text-black"
               >
                 Grafiskdesign & Kommunikation
               </Link>
@@ -93,21 +93,21 @@ export function NavigationMenuDemo() {
       </NavigationMenuItem>
 
       {/* Direct link */}
-      <NavigationMenuItem className="border border-border/60 rounded-md  hover:text-red-600 hover:bg-gray-50">
+      <NavigationMenuItem className="bg-black text-white hover:text-gray-300">
         <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
           <Link href="/idolkort">Idolkort</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
 
       {/* Direct link */}
-      <NavigationMenuItem className="border border-border/60 rounded-md  hover:text-red-600 hover:bg-gray-50">
+      <NavigationMenuItem className="bg-black text-white hover:text-gray-300">
         <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
           <Link href="/phadderistspelet">Phadderistspelet</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
 
       {/* Dropdown: Nolleboken */}
-      <NavigationMenuItem className="border border-border/60 rounded-md hover:text-red-600 hover:bg-gray-50">
+      <NavigationMenuItem className="bg-black text-white hover:text-gray-300">
         <NavigationMenuTrigger className="hover:cursor-pointer">Nolleboken</NavigationMenuTrigger>
         <NavigationMenuContent>
           <div className="grid gap-2 p-4 md:w-[280px]">
