@@ -34,7 +34,7 @@
 
   export default function Idolkort(){
       return(
-        <main>
+        <main className="flex flex-col max-w-full max-h-full">
           <div>
             <h1 className="text-2xl font-bold mb-4 text-center">Idolkort</h1>
           </div>

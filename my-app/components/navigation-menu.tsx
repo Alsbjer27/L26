@@ -60,21 +60,21 @@ export function NavigationMenuDemo() {
   <NavigationMenu viewport={isMobile}>
     <NavigationMenuList className="flex-wrap">
       {/* Direct link */}
-      <NavigationMenuItem className="bg-black text-white hover:text-gray-300">
+      <NavigationMenuItem className="bg-white text-black hover:text-gray-400 rounded-lg border-solid border-black">
         <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
           <Link href="/">Hem</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
 
       {/* Dropdown: Kalender */}
-      <NavigationMenuItem className="bg-black text-white hover:text-gray-300">
+      <NavigationMenuItem className="bg-white text-black hover:text-gray-400 rounded-lg border-solid ">
         <NavigationMenuTrigger className="hover:cursor-pointer">Kalender</NavigationMenuTrigger>
         <NavigationMenuContent className="mt-10">
           <div className="grid gap-2 p-4 md:w-[280px]">
             <NavigationMenuLink asChild>
               <Link
                 href="/kalender"
-                className="rounded-md p-2 hover:border-indigo-500 hover:bg-gray-200 hover:text-accent-foreground text-black"
+                className="rounded-md p-2 hover:bg-gray-200 hover:text-accent-foreground text-black"
               >
                 Grafiskdesign & Kommunikation
               </Link>
@@ -82,8 +82,8 @@ export function NavigationMenuDemo() {
 
             <NavigationMenuLink asChild>
               <Link
-                href="/kalender/veckan"
-                className="rounded-md p-2 hover:bg-accent hover:text-accent-foreground text-black"
+                href="/kalender"
+                className="rounded-md p-2 hover:bg-gray-200 hover:text-accent-foreground text-black"
               >
                 Medieteknik & AI
               </Link>
@@ -93,28 +93,28 @@ export function NavigationMenuDemo() {
       </NavigationMenuItem>
 
       {/* Direct link */}
-      <NavigationMenuItem className="bg-black text-white hover:text-gray-300">
+      <NavigationMenuItem className="bg-white text-black hover:text-gray-400 rounded-lg border-solid border-black">
         <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
           <Link href="/idolkort">Idolkort</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
 
       {/* Direct link */}
-      <NavigationMenuItem className="bg-black text-white hover:text-gray-300">
+      <NavigationMenuItem className="bg-white text-black hover:text-gray-400 rounded-lg border-solid border-black">
         <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
           <Link href="/phadderistspelet">Phadderistspelet</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
 
       {/* Dropdown: Nolleboken */}
-      <NavigationMenuItem className="bg-black text-white hover:text-gray-300">
+      <NavigationMenuItem className="bg-white text-black hover:text-gray-400 rounded-lg border-solid border-black">
         <NavigationMenuTrigger className="hover:cursor-pointer">Nolleboken</NavigationMenuTrigger>
         <NavigationMenuContent>
           <div className="grid gap-2 p-4 md:w-[280px]">
             <NavigationMenuLink asChild>
               <Link
                 href="/nolleboken"
-                className="rounded-md p-2 hover:bg-accent hover:text-accent-foreground"
+                className="rounded-md p-2 hover:bg-gray-200 hover:text-accent-foreground text-black"
               >
                 Grafiskdesign & Kommunikation
               </Link>
@@ -123,7 +123,7 @@ export function NavigationMenuDemo() {
             <NavigationMenuLink asChild>
               <Link
                 href="/nolleboken/regler"
-                className="rounded-md p-2 hover:bg-accent hover:text-accent-foreground"
+                className="rounded-md p-2 hover:bg-gray-200 hover:text-accent-foreground text-black"
               >
                 Medieteknik & AI
               </Link>
