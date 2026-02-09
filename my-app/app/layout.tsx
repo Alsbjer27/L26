@@ -12,7 +12,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       
       <title>Legionen</title>
       <body className="w-full min-h-screen">
-        <DarkVeilBackground />
+       <div className="fixed inset-0 -z-10 pointer-events-none">
+          <DarkVeilBackground />
+        </div>
         <header className="sticky top-0 z-50 w-full">
           <div className=" text-white text-6xl mx-auto flex w-full max-w-9xl justify-center px-4 py-7">
             LEGIONEN

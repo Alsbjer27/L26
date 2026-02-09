@@ -36,10 +36,10 @@
       return(
         <main className="flex flex-col max-w-full max-h-full">
           <div>
-            <h1 className="text-2xl font-bold mb-4 text-center">Idolkort</h1>
+            <h1 className="text-2xl font-bold mb-4 text-center text-white">Idolkort</h1>
           </div>
           <div className="w-full flex justify-center mb-2">
-            <Input type="text" placeholder="Lösenord..." className="w-min"/>
+            <Input type="text" placeholder="Lösenord..." className="w-min text-white"/>
           </div>
           <Carousel className="w-full max-w-xs mx-auto">
           <CarouselContent>
