@@ -114,7 +114,7 @@ export function NavigationMenuDemo() {
             <NavigationMenuLink asChild>
               <Link
                 href="/nolleboken"
-                className="rounded-md p-2 hover:bg-gray-200 hover:text-accent-foreground text-black"
+                className="rounded-md p-2 hover:bg-gray-200 hover:text-accent-foreground text-black bg-white"
               >
                 Grafiskdesign & Kommunikation
               </Link>
@@ -123,7 +123,7 @@ export function NavigationMenuDemo() {
             <NavigationMenuLink asChild>
               <Link
                 href="/nolleboken/regler"
-                className="rounded-md p-2 hover:bg-gray-200 hover:text-accent-foreground text-black"
+                className="rounded-md p-2 hover:bg-gray-200 hover:text-accent-foreground text-black bg-white"
               >
                 Medieteknik & AI
               </Link>
