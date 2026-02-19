@@ -1,4 +1,5 @@
   import * as React from "react";
+  import Image from "next/image";
 
   import { Card, CardContent } from "@/components/ui/card"
   import { Input } from "@/components/ui/input"
@@ -34,7 +35,7 @@
 
   export default function Idolkort(){
       return(
-        <main className="flex flex-col max-w-full max-h-full">
+        <main className="flex flex-col max-w-full max-h-full mt-40">
           <div>
             <h1 className="text-2xl font-bold mb-4 text-center text-white">Idolkort</h1>
           </div>
@@ -48,8 +49,14 @@
                 <div className="p-0.2">
                   <Card>
                     <CardContent className="flex aspect-square items-center justify-center p-4">
-                      <img src={card.image} alt={card.name} className="max-h-full max-w-full object-contain" />
-                    </CardContent>
+<Image
+  src={card.image}
+  alt={card.name}
+  width={600}
+  height={600}
+  className="max-h-full max-w-full object-contain"
+  unoptimized
+/>                   </CardContent>
                   </Card>
                 </div>
               </CarouselItem>

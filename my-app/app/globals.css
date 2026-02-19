@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/*--- FONTS ---*/
 :root {
   --radius: 0.625rem;
   --background: oklch(100% 0.00011 271.152);

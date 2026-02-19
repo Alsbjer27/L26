@@ -6,6 +6,12 @@ import { AppSidebar } from "@/components/app-sidebar"
 import { NavigationMenuDemo } from "@/components/navigation-menu"
 import DarkVeilBackground from "@/components/reactbits/DarkVeilBackground";
 import ShinyText from "@/components/reactbits/ShinyText"
+import localFont from "next/font/local"
+
+const trattatello = localFont({
+  src: "./fonts/Trattatello/Trattatello/Trattatello.ttf",
+  display: "swap",
+})
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -17,14 +23,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <DarkVeilBackground />
         </div>
         <header className="sticky top-0 z-50 w-full">
-          <div className=" text-white text-6xl mx-auto flex w-full max-w-9xl justify-center px-4 py-7">
+          <div className="text-white text-6xl mx-auto flex w-full max-w-9xl justify-center px-4 py-7">
             <ShinyText
               text="LEGIONEN"
-              speed={2}
+              speed={10}
               delay={0}
-              color="#b5b5b5"
-              shineColor="#ffffff"
-              spread={120}
+              className={trattatello.className}
+              color="#ffffff"
+              shineColor="#730a10"
+              spread={50}
               direction="left"
               yoyo={false}
               pauseOnHover={false}
