@@ -29,7 +29,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               speed={10}
               delay={0}
               className={trattatello.className}
-              color="#ffffff"
+              color="#BE8400"
               shineColor="#730a10"
               spread={50}
               direction="left"
