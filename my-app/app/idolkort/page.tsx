@@ -21,18 +21,18 @@ type CardData = {
 }
 
 const cards: CardData[] = [
-  { id: "1", name: "Linus Magnusson", image: "/cards/Tray.png", password: "RideTheLightning" },
-  { id: "2", name: "William Andersson", image: "/cards/Gru.png", password: "grukencheck" },
-  { id: "3", name: "Emma Stenerhag", image: "/cards/Mary.png", password: "φυτάγεια" },
-  { id: "4", name: "Hugo Backegårdh", image: "/cards/Cloe.png", password: "stampontheground" },
-  { id: "5", name: "Julia Helgeström", image: "/cards/Ace.png", password: "aceärbäst123" },
-  { id: "6", name: "Arvid Magnusson", image: "/cards/Vicki.png", password: "ganskahemligt123" },
-  { id: "7", name: "Emil Alsbjer", image: "/cards/Drew.png", password: "gniksihsac" },
-  { id: "8", name: "Julia Zackrisson", image: "/cards/Carly.png", password: "legocastlearchitect" },
-  { id: "9", name: "Kajsa Frykestig", image: "/cards/Ally.png", password: "Cyglapaugeodeis" },
-  { id: "10", name: "Nils Marion", image: "/cards/Con Soul.png", password: "POUNDERTHAORB" },
-  { id: "11", name: "Amy Secka", image: "/cards/Moe.png", password: "LösMoesord" },
-  { id: "12", name: "Maskot", image: "/cards/Getrud.png", password: "Getterärbättreänfår123" }
+  { id: "1", name: "Cheif Wade P Sam", image: "/cards/Tray.png", password: "RideTheLightning" },
+  { id: "2", name: "Moe D. Low", image: "/cards/Gru.png", password: "grukencheck" },
+  { id: "3", name: "Penny G. Arflode", image: "/cards/Mary.png", password: "φυτάγεια" },
+  { id: "4", name: "Ray. L. Wade", image: "/cards/Cloe.png", password: "stampontheground" },
+  { id: "5", name: "Blenda A Lay", image: "/cards/Ace.png", password: "aceärbäst123" },
+  { id: "6", name: "Wayle Lough P", image: "/cards/Vicki.png", password: "ganskahemligt123" },
+  { id: "7", name: "Kong Kurtinator", image: "/cards/Drew.png", password: "gniksihsac" },
+  { id: "8", name: "Rose P. Anther", image: "/cards/Carly.png", password: "legocastlearchitect" },
+  { id: "9", name: "Stella Tilde", image: "/cards/Ally.png", password: "Cyglapaugeodeis" },
+  { id: "10", name: "Wick Thorfield", image: "/cards/Con Soul.png", password: "POUNDERTHAORB" },
+  { id: "11", name: "Gloria S. Kai", image: "/cards/Moe.png", password: "LösMoesord" },
+  { id: "12", name: "Galileihoo Auf Ugglas", image: "/cards/Getrud.png", password: "Getterärbättreänfår123" }
 ]
 
 export default function Idolkort() {
@@ -51,13 +51,11 @@ export default function Idolkort() {
     if (!unlockedIds.includes(matchedCard.id)) {
       setUnlockedIds((prev) => [...prev, matchedCard.id])
     }
-
-    setMessage(`${matchedCard.name} unlocked`)
     setInputPassword("")
   }
 
   return (
-    <main className="flex flex-col max-w-full max-h-full mt-40">
+    <main className="flex flex-col max-w-full max-h-full mt-34">
       <div>
         <h1 className="text-2xl font-bold mb-4 text-center text-white">Idolkort</h1>
       </div>
@@ -74,7 +72,7 @@ export default function Idolkort() {
           onClick={handleUnlock}
           className="px-4 py-2 rounded-md bg-white text-black"
         >
-          Unlock
+          Lös in
         </button>
       </div>
 
@@ -104,7 +102,7 @@ export default function Idolkort() {
                       ) : (
                         <div className="text-center">
                           <p className="font-semibold">{card.name}</p>
-                          <p className="text-sm text-gray-500">Locked</p>
+                          <p className="text-sm text-gray-500">Låst</p>
                         </div>
                       )}
                     </CardContent>
