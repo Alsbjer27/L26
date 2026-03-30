@@ -29,7 +29,7 @@ const cards: CardData[] = [
   { id: "4", name: "Ray. L. Wade", image: "/cards/Cloe.png", password: "stampontheground", description: "" },
   { id: "5", name: "Blenda A Lay", image: "/cards/Ace.png", password: "aceärbäst123" ,description: ""},
   { id: "6", name: "Wayle Lough P", image: "/cards/Vicki.png", password: "ganskahemligt123", description: "" },
-  { id: "7", name: "Kong Kurtinator", image: "/cards/Drew.png", password: "gniksihsac", description: `När det röda norrskenet skapade stjärntecknen föddes Vattumannen – stjärnbilden för visionärer, uppfinnare och de som alltid tror att de är ett steg från ett stort genombrott.
+  { id: "7", name: "Kong Kurtinator", image: "/cards/Drew.png", password: "URAQTPI", description: `När det röda norrskenet skapade stjärntecknen föddes Vattumannen – stjärnbilden för visionärer, uppfinnare och de som alltid tror att de är ett steg från ett stort genombrott.
 Ur denna stjärnbild steg Kong Kurtinator fram.
 
 

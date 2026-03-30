@@ -108,28 +108,9 @@ export function NavigationMenuDemo() {
 
       {/* Dropdown: Nolleboken */}
       <NavigationMenuItem className="bg-white text-black hover:text-gray-400 rounded-lg border-solid border-black">
-        <NavigationMenuTrigger className="hover:cursor-pointer">Nolleboken</NavigationMenuTrigger>
-        <NavigationMenuContent>
-          <div className="grid gap-2 p-4 md:w-[280px]">
-            <NavigationMenuLink asChild>
-              <Link
-                href="/nolleboken"
-                className="rounded-md p-2 hover:bg-gray-200 hover:text-accent-foreground text-black bg-white"
-              >
-                Grafiskdesign & Kommunikation
-              </Link>
-            </NavigationMenuLink>
-
-            <NavigationMenuLink asChild>
-              <Link
-                href="/nolleboken/regler"
-                className="rounded-md p-2 hover:bg-gray-200 hover:text-accent-foreground text-black bg-white"
-              >
-                Medieteknik & AI
-              </Link>
-            </NavigationMenuLink>
-          </div>
-        </NavigationMenuContent>
+        <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+          <Link href="/nolleboken">Nolleboken</Link>
+        </NavigationMenuLink>
       </NavigationMenuItem>
     </NavigationMenuList>
   </NavigationMenu>
