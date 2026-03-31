@@ -11,11 +11,11 @@ export default function DarkVeilBackground({ className }: Props) {
     <div className={`absolute inset-0 ${className ?? ""}`} aria-hidden="true">
       <DarkVeil
         hueShift={230}
-        noiseIntensity={0.05}
+        noiseIntensity={0}
         scanlineIntensity={0}
         speed={1.0}
-        scanlineFrequency={3.2}
-        warpAmount={2.8}
+        scanlineFrequency={0}
+        warpAmount={4}
       />
     </div>
   );
