@@ -116,8 +116,8 @@ export default function Idolkort() {
   const isCurrentUnlocked = unlockedIds.includes(currentCard.id)
 
   return (
-    <main className="flex flex-col items-center mt-30 px-6">
-      <h1 className="text-2xl font-bold mb-4 text-white">Idolkort</h1>
+    <main className="flex flex-col items-center mt-2 px-6">
+      <p className="text-xl mb-4 text-white">Har Nollan hittat ett lösenord? Testa skriva in det här, kanske.</p>
 
       <div className="flex gap-2 mb-8">
         <Input
@@ -155,15 +155,14 @@ export default function Idolkort() {
                 Låst
               </h2>
               <p className="text-white/50">
-                This text is revealed when the correct password is entered.
+                Nollan behöver mata in ett giltigt lösenord kanske
               </p>
             </div>
           )}
         </div>
 
-        {/* RIGHT SIDE: actual carousel card */}
         {/* RIGHT SIDE */}
-  <div className="w-full max-w-sm shrink-0">
+  <div className="w-full max-w-[300px] shrink-0">
     <Carousel setApi={setApi} className="w-full">
       <CarouselContent>
         {cards.map((card) => {

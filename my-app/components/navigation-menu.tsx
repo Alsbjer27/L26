@@ -67,29 +67,10 @@ export function NavigationMenuDemo() {
       </NavigationMenuItem>
 
       {/* Dropdown: Kalender */}
-      <NavigationMenuItem className="bg-neutral-300 text-black hover:bg-gray-200 rounded-lg border-solid ">
-        <NavigationMenuTrigger className="hover:cursor-pointer">Kalender</NavigationMenuTrigger>
-        <NavigationMenuContent className="mt-10">
-          <div className="grid gap-2 p-4 md:w-[280px]">
-            <NavigationMenuLink asChild>
-              <Link
-                href="/kalender"
-                className="rounded-md p-2 hover:bg-gray-200 hover:text-accent-foreground text-black bg-neutral-300"
-              >
-                Grafiskdesign & Kommunikation
-              </Link>
-            </NavigationMenuLink>
-
-            <NavigationMenuLink asChild>
-              <Link
-                href="/kalender"
-                className="rounded-md p-2 hover:bg-gray-200 hover:text-accent-foreground text-black bg-neutral-300"
-              >
-                Medieteknik & AI
-              </Link>
-            </NavigationMenuLink>
-          </div>
-        </NavigationMenuContent>
+      <NavigationMenuItem className="bg-neutral-300 text-black hover:bg-gray-200 rounded-lg border-solid border-black">
+        <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+          <Link href="/kalender">Kalender</Link>
+        </NavigationMenuLink>
       </NavigationMenuItem>
 
       {/* Direct link */}

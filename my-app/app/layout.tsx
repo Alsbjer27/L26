@@ -7,6 +7,7 @@ import { NavigationMenuDemo } from "@/components/navigation-menu"
 import DarkVeilBackground from "@/components/reactbits/DarkVeilBackground";
 import ShinyText from "@/components/reactbits/ShinyText"
 import localFont from "next/font/local"
+import GooeyNavUse from "@/components/reactbits/GooeyNavUse"
 
 const trattatello = localFont({
   src: "./fonts/Trattatello/Trattatello/Trattatello.ttf",
@@ -41,8 +42,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </header>
 
         <div className="mx-auto flex w-full max-w-9xl justify-center px-4 py-3 ">
-            <NavigationMenuDemo />
-          </div>
+          <GooeyNavUse/>
+        </div>
         <main>
           {children}
         </main>
