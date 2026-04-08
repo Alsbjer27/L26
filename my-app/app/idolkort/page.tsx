@@ -170,7 +170,7 @@ export default function Idolkort() {
 
           return (
             <CarouselItem key={card.id}>
-              <Card className="bg-gray-100/1">
+              <Card className="bg-gray-100/1 border-none">
                 <CardContent className="p-4 flex items-center justify-center">
                   <div className="relative w-full aspect-[60/86]">
                     {isUnlocked ? (
