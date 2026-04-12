@@ -1,15 +1,15 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Card, CardHeader, CardTitle, CardFooter, CardDescription } from '@/app/components/ui/Card'
-import { Button } from '@/app/components/ui/Button'
+import { Card, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 import {
   Pagination,
   PaginationNext,
   PaginationPrevious,
   PaginationContent,
   PaginationItem
-} from './ui/pagination'
+} from '@/components/ui/pagination'
 
 interface EventItem {
   summary: string

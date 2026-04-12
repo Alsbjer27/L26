@@ -69,7 +69,7 @@ const cards: CardData[] = [
   
   { id: "10", name: "Wick Thorfield", image: "/cards/Con Soul.png", password: "POUNDERTHAORB", description: "" },
   
-  { id: "11", name: "Gloria S. Kai", image: "/cards/Moe.png", password: "LösMoesord", description: "" },
+  { id: "11", name: "Gloria S. Caye", image: "/cards/Moe.png", password: "LösMoesord", description: "" },
   
   { id: "12", name: "Galileihoo Auf Ugglas", image: "/cards/Getrud.png", password: "Getterärbättreänfår123", description: "" }
 ]
@@ -139,8 +139,8 @@ export default function Idolkort() {
       </div>
 
       {message && <p className="text-white mb-6">{message}</p>}
-
-      <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-50 w-full max-w-6xl">   {/* LEFT SIDE: text panel */}
+      {/* LEFT SIDE: text panel */}
+      <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-50 w-full max-w-6xl">   
         <div className="w-full max-w-md min-h-[320px] rounded-2xl bg-gray-200/2 backdrop-blur-sm p-6 text-white">
           {isCurrentUnlocked ? (
             <>
