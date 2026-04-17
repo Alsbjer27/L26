@@ -24,24 +24,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <DarkVeilBackground />
         </div>
         <header className=" top-0 z-50 w-full">
-          <div className="text-white text-6xl mx-auto flex w-full max-w-9xl justify-center px-4 py-7">
-            <ShinyText
-              text="LEGIONEN"
-              speed={10}
-              delay={0}
-              className={trattatello.className}
-              color="#C0C0C0"
-              shineColor="#730a10"
-              spread={50}
-              direction="left"
-              yoyo={false}
-              pauseOnHover={false}
-              disabled={false}
-            />
+          <div className="text-white text-6xl mx-auto flex w-full max-w-9xl justify-center px-4 py-7 pt-4">
           </div>
         </header>
 
-        <div className="mx-auto flex w-full max-w-9xl justify-center px-4 py-3 ">
+        <div className="mx-auto flex w-full max-w-9xl justify-center px-4 py-2 ">
           <GooeyNavUse/>
         </div>
         <main>

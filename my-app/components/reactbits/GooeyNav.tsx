@@ -357,7 +357,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
 
       <div className="relative" ref={containerRef}>
         <nav
-          className="relative flex justify-center"
+          className="relative flex justify-center bg-gray-300/10 rounded-4xl py-3"
           style={{ transform: "translate3d(0,0,0.01px)" }}
         >
           <ul

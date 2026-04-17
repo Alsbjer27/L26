@@ -85,44 +85,47 @@ export default function TodayEvents({
   const todaysEvents = events.filter((event) => getEventDate(event) === today)
 
   return (
-    <div className="w-full">
-      <h2 className={`text-2xl font-bold text-center mb-4 ${titleClassName}`}>
-        {title}
-      </h2>
+    <section className="w-full rounded-3xl border border-white/10 bg-black/35 backdrop-blur-md shadow-xl p-5 md:p-6">
+      <div className="mb-4">
+        <h2 className={`text-2xl font-bold text-center ${titleClassName}`}>
+          {title}
+        </h2>
+      </div>
 
       {loading ? (
-        <div className="text-white text-center">Laddar...</div>
+        <div className="flex justify-center items-center min-h-[180px]">
+          <div className="h-10 w-10 animate-spin rounded-full border-4 border-white/20 border-t-white" />
+        </div>
       ) : todaysEvents.length === 0 ? (
-        <div className="border border-[#dbce9c]/30 rounded-lg p-6 text-center text-[#dbce9c] opacity-70">
-            Inga aktiviteter idag
+        <div className="rounded-2xl border border-dashed border-white/15 bg-white/5 px-6 py-10 text-center text-white/50">
+          Inga aktiviteter idag
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-3">
           {todaysEvents.map((event, index) => (
             <Card
               key={index}
-              className="bg-[#4a0000] text-[#dbce9c] border border-[#dbce9c]"
+              className="rounded-2xl border border-white/10 bg-black/30 shadow-none"
             >
-              <CardHeader className="pb-2">
-                <CardTitle className="text-white text-base">
+              <CardHeader className="p-4 pb-2">
+                <CardTitle className="text-white text-base leading-snug">
                   {event.summary}
                 </CardTitle>
               </CardHeader>
 
-              <CardDescription className="px-6 text-sm text-[#dbce9c]">
+              <CardDescription className="px-4 text-sm text-white/60">
                 {event.location || "Plats kommer snart"}
               </CardDescription>
 
-              <CardFooter className="text-sm text-[#dbce9c]">
-                {formatTime(event.start.dateTime)}{" "}
-                {event.start.dateTime && event.end.dateTime ? "-" : ""}
-                {" "}
+              <CardFooter className="px-4 pt-3 text-sm text-white/80">
+                {formatTime(event.start.dateTime)}
+                {event.start.dateTime && event.end.dateTime ? " - " : ""}
                 {formatTime(event.end.dateTime)}
               </CardFooter>
             </Card>
           ))}
         </div>
       )}
-    </div>
+    </section>
   )
 }

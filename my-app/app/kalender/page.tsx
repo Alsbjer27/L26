@@ -1,15 +1,21 @@
-'use client'
+"use client"
 
-import React, { useState, useEffect } from 'react'
-import { Card, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
+import React, { useState, useEffect } from "react"
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+  CardDescription,
+} from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import {
   Pagination,
   PaginationNext,
   PaginationPrevious,
   PaginationContent,
-  PaginationItem
-} from '@/components/ui/pagination'
+  PaginationItem,
+} from "@/components/ui/pagination"
 
 interface EventItem {
   summary: string
@@ -19,246 +25,297 @@ interface EventItem {
 }
 
 interface GetEventsProps {
-  viewMode: 'day' | 'week'
+  viewMode: "day" | "week"
   currentDate: string
   setCurrentDate: React.Dispatch<React.SetStateAction<string>>
   query: string
   currentWeekIndex: number
 }
 
-const WEEKS_COUNT = 2 // number of weeks to toggle between
+const WEEKS_COUNT = 2
 
 export default function Schema() {
-  const [viewMode, setViewMode] = useState<'day' | 'week'>('day')
-  const [query, setQuery] = useState('MT')
-  const [currentDate, setCurrentDate] = useState(new Date().toISOString().split('T')[0])
+  const [viewMode, setViewMode] = useState<"day" | "week">("day")
+  const [query, setQuery] = useState("MT")
+  const [currentDate, setCurrentDate] = useState(
+    new Date().toISOString().split("T")[0]
+  )
   const [currentWeekIndex, setCurrentWeekIndex] = useState<number>(0)
-
-  const [isSolvedMed, setIsSolvedMed] = useState(false);
+  const [isSolvedMed, setIsSolvedMed] = useState(false)
 
   useEffect(() => {
-  const checkKeys = async () => {
-    const allKeys = Object.keys(localStorage);
-    
-    try {
-      const response = await fetch('/api/checkKeys', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          foundKeys: allKeys,
-          checkMultiple: [2, 0, 1, 5, 6] 
-        })
-      });
-      
-      const data = await response.json();
-      setIsSolvedMed(data.isSolved);
-    } catch (error) {
-      console.error('Error checking keys:', error);
-    }
-  };
-  
-  checkKeys();
-}, []);
+    const checkKeys = async () => {
+      const allKeys = Object.keys(localStorage)
 
+      try {
+        const response = await fetch("/api/checkKeys", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            foundKeys: allKeys,
+            checkMultiple: [2, 0, 1, 5, 6],
+          }),
+        })
+
+        const data = await response.json()
+        setIsSolvedMed(data.isSolved)
+      } catch (error) {
+        console.error("Error checking keys:", error)
+      }
+    }
+
+    checkKeys()
+  }, [])
 
   const openCalendarSubscription = (calendarId: string) => {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
 
     if (isIOS) {
-      // iOS: use webcal:// so it opens the native Calendar app subscription dialog
       window.open(
         `webcal://calendar.google.com/calendar/ical/${calendarId}%40group.calendar.google.com/public/basic.ics`,
-        '_blank'
+        "_blank"
       )
     } else {
-      // Android/web: Google Calendar subscription link
       window.open(
         `https://calendar.google.com/calendar/u/0/r?cid=${calendarId}@group.calendar.google.com`,
-        '_blank'
+        "_blank"
       )
     }
   }
 
-
   const handleNext = () => {
-    if (viewMode === 'day') {
+    if (viewMode === "day") {
       const nextDate = new Date(currentDate)
       nextDate.setDate(nextDate.getDate() + 1)
-      setCurrentDate(nextDate.toISOString().split('T')[0])
+      setCurrentDate(nextDate.toISOString().split("T")[0])
     } else {
       setCurrentWeekIndex((p) => Math.min(p + 1, WEEKS_COUNT - 1))
     }
   }
 
   const handlePrevious = () => {
-    if (viewMode === 'day') {
+    if (viewMode === "day") {
       const previousDate = new Date(currentDate)
       previousDate.setDate(previousDate.getDate() - 1)
-      setCurrentDate(previousDate.toISOString().split('T')[0])
+      setCurrentDate(previousDate.toISOString().split("T")[0])
     } else {
       setCurrentWeekIndex((p) => Math.max(p - 1, 0))
     }
   }
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 1099px)')
+    const mediaQuery = window.matchMedia("(max-width: 1099px)")
     const handleMediaChange = (e: MediaQueryListEvent | MediaQueryList) => {
       if (e.matches) {
-        setViewMode('day')
+        setViewMode("day")
       } else {
-        setViewMode('week')
+        setViewMode("week")
       }
     }
 
     handleMediaChange(mediaQuery)
-    mediaQuery.addEventListener('change', handleMediaChange as EventListener)
+    mediaQuery.addEventListener("change", handleMediaChange as EventListener)
 
-    return () => mediaQuery.removeEventListener('change', handleMediaChange as EventListener)
+    return () =>
+      mediaQuery.removeEventListener("change", handleMediaChange as EventListener)
   }, [])
 
+  const todayStr = new Date().toISOString().split("T")[0]
+
   return (
-    <div id="schema" className="w-5/6 sm:w-5/6 h-max mx-auto">
-        <div className="flex-col flex justify-between sm:items-center mx-auto mb-4">
-            <h1 className="text-5xl font-bold text-white mb-4">Schema</h1>
-            <div>
-                <div className="inline-flex mx-4 mb-10">
-                    <Button
-                    className={`rounded-r-none text-md ${viewMode === 'day' ? 'bg-yellow-100 text-black border-white' : 'text-white'}`}
+    <div id="schema" className="w-full max-w-7xl mx-auto px-4 md:px-6 py-10">
+      {/* TOP PANEL */}
+      <div className="mb-8 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-md shadow-2xl">
+        <div className="flex flex-col gap-6 p-6 md:p-8">
+          <div className="flex flex-col gap-2">
+            <p className="text-white/60 text-sm md:text-base">
+              Se dagens aktiviteter eller hela veckan för ditt program.
+            </p>
+          </div>
+
+          <div className="flex flex-col xl:flex-row xl:items-end xl:justify-between gap-6">
+            <div className="flex flex-col gap-4">
+              {/* View Toggle */}
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  variant="outline"
+                  className={`rounded-full px-6 ${
+                    viewMode === "day"
+                      ? "bg-white text-black border-white"
+                      : "bg-transparent text-white border-white/20 hover:bg-white/10"
+                  }`}
+                  onClick={() => setViewMode("day")}
+                >
+                  Idag
+                </Button>
+                <Button
+                  variant="outline"
+                  className={`rounded-full px-6 ${
+                    viewMode === "week"
+                      ? "bg-white text-black border-white"
+                      : "bg-transparent text-white border-white/20 hover:bg-white/10"
+                  }`}
+                  onClick={() => setViewMode("week")}
+                >
+                  Vecka
+                </Button>
+              </div>
+
+              {/* Program Toggle */}
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  variant="outline"
+                  className={`rounded-full px-6 ${
+                    query === "MT"
+                      ? "bg-orange-500 text-white border-orange-500"
+                      : "bg-transparent text-white border-white/20 hover:bg-white/10"
+                  }`}
+                  onClick={() => setQuery("MT")}
+                >
+                  MT
+                </Button>
+
+                {isSolvedMed && (
+                  <Button
                     variant="outline"
-                    onClick={() => setViewMode('day')}
-                    >
-                    Idag
-                    </Button>
-                    <Button
-                    className={`rounded-l-none text-md ${viewMode === 'week' ? 'bg-yellow-100 text-black border-white' : 'text-white'}`}
-                    variant="outline"
-                    onClick={() => setViewMode('week')}
-                    >
-                    Vecka
-                    </Button>
-                </div>
+                    className={`rounded-full px-6 ${
+                      query === "MED"
+                        ? "bg-zinc-700 text-white border-zinc-700"
+                        : "bg-transparent text-white border-white/20 hover:bg-white/10"
+                    }`}
+                    onClick={() => setQuery("MED")}
+                  >
+                    ?
+                  </Button>
+                )}
 
-                <div className="inline-flex mx-4">
+                <Button
+                  variant="outline"
+                  className={`rounded-full px-6 ${
+                    query === "GDK"
+                      ? "bg-emerald-600 text-white border-emerald-600"
+                      : "bg-transparent text-white border-white/20 hover:bg-white/10"
+                  }`}
+                  onClick={() => setQuery("GDK")}
+                >
+                  GDK
+                </Button>
+              </div>
+            </div>
 
-                    {/* MT tab */}
-                    <Button
-                        className={`rounded-r-none text-md ${query === 'MT' ? 'bg-orange-600 text-white' : ''}`}
-                        variant="outline"
-                        onClick={() => setQuery('MT')}
-                    >
-                        MT
-                    </Button>
-
-                    {/* MED tab — only visible when solved */}
-                    {isSolvedMed && (
-                        <Button
-                            className={`rounded-none text-md ${
-                                query === 'MED' ? 'bg-gray-800 text-white' : ''
-                            }`}
-                            variant="outline"
-                            onClick={() => setQuery('MED')}
-                        >
-                            ?
-                        </Button>
-                    )}
-
-                    {/* GDK tab */}
-                    <Button
-                        className={`rounded-l-none text-md ${query === 'GDK' ? 'bg-green-700 text-white' : ''}`}
-                        variant="outline"
-                        onClick={() => setQuery('GDK')}
-                    >
-                        GDK
-                    </Button>
-                </div>
-
-                <Pagination>
-                  <PaginationContent>
-                    <div className="flex flex-col items-center justify-between w-full">
-                    <h2 className="text-white font-semibold text-3xl mb-2">
-                      {viewMode === 'day' ? '' : `Vecka ${currentWeekIndex + 1}`}
-                    </h2>
-                      {/* Left arrow */}
-                      <div className='flex items-center justify-between w-full'>
-                      <PaginationItem>
+            {/* Navigation */}
+            <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+              <Pagination>
+                <PaginationContent>
+                  <div className="flex items-center gap-3">
+                    <PaginationItem>
                       <PaginationPrevious
                         onClick={handlePrevious}
-                        className={`text-lg p-4 ${
-                        viewMode === 'week'
-                          ? currentWeekIndex === 0
-                          ? 'opacity-50 pointer-events-none'
-                          : ''
-                          : currentDate === new Date().toISOString().split('T')[0]
-                          ? 'opacity-50 pointer-events-none'
-                          : ''
+                        className={`border border-white/10 rounded-full text-white hover:bg-white/10 ${
+                          viewMode === "week"
+                            ? currentWeekIndex === 0
+                              ? "opacity-40 pointer-events-none"
+                              : ""
+                            : currentDate === todayStr
+                            ? "opacity-40 pointer-events-none"
+                            : ""
                         }`}
                       />
-                      </PaginationItem>
+                    </PaginationItem>
 
-                      {/* Right arrow */}
-                      <PaginationItem>
+                    <div className="min-w-[140px] text-center">
+                      <p className="text-xs uppercase tracking-widest text-white/50">
+                        {viewMode === "day" ? "Datum" : "Period"}
+                      </p>
+                      <p className="text-white font-semibold text-lg">
+                        {viewMode === "day"
+                          ? currentDate
+                          : `Vecka ${currentWeekIndex + 1}`}
+                      </p>
+                    </div>
+
+                    <PaginationItem>
                       <PaginationNext
                         onClick={handleNext}
-                        className={`text-lg p-4 ${
-                        viewMode === 'week'
-                          ? currentWeekIndex === WEEKS_COUNT - 1
-                          ? 'opacity-50 pointer-events-none'
-                          : ''
-                          : ''
+                        className={`border border-white/10 rounded-full text-white hover:bg-white/10 ${
+                          viewMode === "week" &&
+                          currentWeekIndex === WEEKS_COUNT - 1
+                            ? "opacity-40 pointer-events-none"
+                            : ""
                         }`}
                       />
-                      </PaginationItem>
-                      </div>
-                    </div>
-                  </PaginationContent>
-                </Pagination>
+                    </PaginationItem>
+                  </div>
+                </PaginationContent>
+              </Pagination>
             </div>
+          </div>
         </div>
-
-      <GetEvents
-        viewMode={viewMode}
-        currentDate={currentDate}
-        setCurrentDate={setCurrentDate}
-        query={query}
-        currentWeekIndex={currentWeekIndex}
-      />
-    <div className="flex flex-col  justify-center mt-8">
-      <h3 className="text-orange-100 font-semibold mt-4 text-2xl">Prenumerera på kalendern: </h3>
-      <div className="flex space-x-8 py-2">
-        <Button
-          variant="secondary"
-          className="overflow-clip text-white font-bold bg-accent hover:bg-orange-600 border-orange-600 border-3 text-lg p-5" 
-          onClick={() => openCalendarSubscription('01fce5a8500cbf91c25477f99824d51adec96e2e22fb3711efdf1edac911e7d5')}
-        >
-          För MT
-        </Button>
-        <Button
-          variant="secondary"
-          className="overflow-clip text-white font-bold bg-accent hover:bg-green-700 border-green-700 border-3 text-lg p-5"
-          onClick={() => openCalendarSubscription('6a275b293e9d21fa01ce4c5c1558d08c05e705df7dbe577a1b03da55281a33e7')}
-
-        >
-          För GDK
-        </Button>
       </div>
-      {/* <p className="text-orange-100 opacity-50 text-lg">
-        Du kan prenumerera på kalendern genom att lägga till en ny kalender i din kalenderapp och klistra in länken, som du får genom att klicka på ditt program ovan.
-      </p> */}
-      <p className="text-orange-100 opacity-50 text-lg mb-4">
-        Prenumerera på kalendern för att få alla aktiviteter direkt i din kalenderapp.
-      </p>
 
+      {/* MAIN CALENDAR SURFACE */}
+      <div className="rounded-3xl border border-white/10 bg-black/35 backdrop-blur-md shadow-2xl p-4 md:p-6">
+        <GetEvents
+          viewMode={viewMode}
+          currentDate={currentDate}
+          setCurrentDate={setCurrentDate}
+          query={query}
+          currentWeekIndex={currentWeekIndex}
+        />
+      </div>
+
+      {/* SUBSCRIPTIONS */}
+      <div className="mt-8 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-md shadow-xl p-6 md:p-8">
+        <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h3 className="text-2xl font-semibold text-white">
+              Prenumerera på kalendern
+            </h3>
+            <p className="text-white/60 mt-2 max-w-2xl">
+              Lägg till programkalendern i din kalenderapp så att aktiviteterna
+              alltid finns tillgängliga.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            <Button
+              variant="secondary"
+              className="rounded-full px-6 py-5 text-white bg-orange-600 hover:bg-orange-500"
+              onClick={() =>
+                openCalendarSubscription(
+                  "01fce5a8500cbf91c25477f99824d51adec96e2e22fb3711efdf1edac911e7d5"
+                )
+              }
+            >
+              För MT
+            </Button>
+            <Button
+              variant="secondary"
+              className="rounded-full px-6 py-5 text-white bg-emerald-700 hover:bg-emerald-600"
+              onClick={() =>
+                openCalendarSubscription(
+                  "6a275b293e9d21fa01ce4c5c1558d08c05e705df7dbe577a1b03da55281a33e7"
+                )
+              }
+            >
+              För GDK
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   )
 }
 
-/* ============================
-   GetEvents component (week/day rendering, robust date handling)
-   ============================ */
-function GetEvents({ viewMode, currentDate, query, currentWeekIndex }: GetEventsProps) {
+function GetEvents({
+  viewMode,
+  currentDate,
+  query,
+  currentWeekIndex,
+}: GetEventsProps) {
   const [events, setEvents] = useState<EventItem[]>([])
   const [loading, setLoading] = useState(false)
+  
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -269,54 +326,52 @@ function GetEvents({ viewMode, currentDate, query, currentWeekIndex }: GetEvents
           const data: EventItem[] = await res.json()
           setEvents(data)
         } else {
-          console.error('Failed to fetch events:', res.statusText)
+          console.error("Failed to fetch events:", res.statusText)
         }
       } catch (error) {
-        console.error('Error fetching events:', error)
-      }
-      finally {
+        console.error("Error fetching events:", error)
+      } finally {
         setLoading(false)
-      } 
+      }
     }
 
     fetchEvents()
   }, [query])
 
-  // safe parser for event start -> Date | null
-  function parseEventStartToDate(start: { dateTime?: string; date?: string } | undefined): Date | null {
+  function parseEventStartToDate(
+    start: { dateTime?: string; date?: string } | undefined
+  ): Date | null {
     if (!start) return null
     if (start.dateTime) {
       const d = new Date(start.dateTime)
       return isNaN(d.getTime()) ? null : d
     }
     if (start.date) {
-      // ensure we convert date-only to a valid Date (midnight)
-      const d = new Date(start.date + 'T00:00:00')
+      const d = new Date(start.date + "T00:00:00")
       return isNaN(d.getTime()) ? null : d
     }
     return null
   }
 
   function formatYMD(d: Date) {
-    if (!d || isNaN(d.getTime())) return ''
+    if (!d || isNaN(d.getTime())) return ""
     const year = d.getFullYear()
-    const month = String(d.getMonth() + 1).padStart(2, '0')
-    const day = String(d.getDate()).padStart(2, '0')
+    const month = String(d.getMonth() + 1).padStart(2, "0")
+    const day = String(d.getDate()).padStart(2, "0")
     return `${year}-${month}-${day}`
   }
 
   function formatDateTime(dateTimeString: string): [string, string] {
     const dateObj = new Date(dateTimeString)
-    if (isNaN(dateObj.getTime())) return ['', '']
+    if (isNaN(dateObj.getTime())) return ["", ""]
     const year = dateObj.getFullYear()
-    const month = String(dateObj.getMonth() + 1).padStart(2, '0')
-    const day = String(dateObj.getDate()).padStart(2, '0')
-    const hours = String(dateObj.getHours()).padStart(2, '0')
-    const minutes = String(dateObj.getMinutes()).padStart(2, '0')
+    const month = String(dateObj.getMonth() + 1).padStart(2, "0")
+    const day = String(dateObj.getDate()).padStart(2, "0")
+    const hours = String(dateObj.getHours()).padStart(2, "0")
+    const minutes = String(dateObj.getMinutes()).padStart(2, "0")
     return [`${year}-${month}-${day}`, `${hours}:${minutes}`]
   }
 
-  // build eventsByDate
   const eventsByDate: Record<string, EventItem[]> = {}
   events.forEach((ev) => {
     const dt = parseEventStartToDate(ev.start)
@@ -327,160 +382,187 @@ function GetEvents({ viewMode, currentDate, query, currentWeekIndex }: GetEvents
     }
   })
 
-  // Decide which Monday to use as the base for the weeks:
-  // prefer earliest event date if available, otherwise use currentDate
-  const parsedEventDates = events.map((e) => parseEventStartToDate(e.start)).filter((d): d is Date => d !== null)
-  const baseDateForWeeks = parsedEventDates.length > 0 ? new Date(Math.min(...parsedEventDates.map((d) => d.getTime()))) : new Date(currentDate + 'T00:00:00')
+  const parsedEventDates = events
+    .map((e) => parseEventStartToDate(e.start))
+    .filter((d): d is Date => d !== null)
 
-  // get Monday for a given date
+  const baseDateForWeeks =
+    parsedEventDates.length > 0
+      ? new Date(Math.min(...parsedEventDates.map((d) => d.getTime())))
+      : new Date(currentDate + "T00:00:00")
+
   function getMonday(date: Date) {
     const d = new Date(date)
-    const day = d.getDay() // 0 (Sun) - 6 (Sat)
-    // we want monday = 1. If sunday (0) => go back 6
+    const day = d.getDay()
     const diff = (day === 0 ? -6 : 1) - day
     d.setDate(d.getDate() + diff)
     d.setHours(0, 0, 0, 0)
     return d
   }
 
-  // generate weeks starting on Monday
   const startOfFirstWeek = getMonday(baseDateForWeeks)
   const weeks: string[][] = []
+
   for (let w = 0; w < WEEKS_COUNT; w++) {
     const thisWeek: string[] = []
     const weekStart = new Date(startOfFirstWeek)
     weekStart.setDate(weekStart.getDate() + w * 7)
+
     for (let d = 0; d < 7; d++) {
       const day = new Date(weekStart)
       day.setDate(weekStart.getDate() + d)
       thisWeek.push(formatYMD(day))
     }
+
     weeks.push(thisWeek)
   }
-  const currentWeekDates = weeks[currentWeekIndex] || []
 
+  const currentWeekDates = weeks[currentWeekIndex] || []
   const todayStr = formatYMD(new Date())
 
-  // localized weekday name (svenska short) - safe fallback
   function weekdayShort(dateStr: string) {
-    const d = new Date(dateStr + 'T00:00:00')
-    if (isNaN(d.getTime())) return ''
-    // make capitalized
-    return d.toLocaleDateString('sv-SE', { weekday: 'long' }).charAt(0).toUpperCase() + d.toLocaleDateString('sv-SE', { weekday: 'long' }).slice(1)
+    const d = new Date(dateStr + "T00:00:00")
+    if (isNaN(d.getTime())) return ""
+    const label = d.toLocaleDateString("sv-SE", { weekday: "long" })
+    return label.charAt(0).toUpperCase() + label.slice(1)
   }
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-[200px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-yellow-100"></div>
+      <div className="flex justify-center items-center min-h-[260px]">
+        <div className="h-12 w-12 animate-spin rounded-full border-4 border-white/20 border-t-white" />
       </div>
     )
   }
 
-
   return (
     <div>
-      <div className={`rounded-xl border-yellow-100 border-2 ${viewMode === 'day' ? 'flex flex-col' : 'sm:grid sm:grid-cols-7'}`}>
-          {viewMode === 'day' ? (
-            <div className="bg-[#3a0000] rounded-xl border-yellow-100 border p-2">
-              <h2 className="text-center font-semibold mt-2 text-lg">{weekdayShort(currentDate)}</h2>
-              <h2 className="text-center font-bold">{currentDate}</h2>
+      {viewMode === "day" ? (
+        <div className="max-w-3xl mx-auto">
+          <div className="mb-4 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-center">
+            <p className="text-white/60 text-sm uppercase tracking-widest">
+              {weekdayShort(currentDate)}
+            </p>
+            <h2 className="text-white text-2xl font-semibold">{currentDate}</h2>
+          </div>
 
-              {(eventsByDate[currentDate] || []).map((event, idx) => (
-                <Card
+          <div className="space-y-4">
+            {(eventsByDate[currentDate] || []).length > 0 ? (
+              (eventsByDate[currentDate] || []).map((event, idx) => (
+                <EventCard
                   key={idx}
-                  className={`my-6 sm:mx-auto text-white shadow-lg hover:scale-105 transition-transform duration-200 ${
-                    parseFloat(formatDateTime(event.end.dateTime || event.end.date!)[1]) -
-                      parseFloat(formatDateTime(event.start.dateTime || event.start.date!)[1]) >
-                    2
-                      ? 'min-h-54'
-                      : 'min-h-20'
-                  }`}
-                  style={{
-                    backgroundColor: currentDate === todayStr ? '#800000' : '#4a0000',
-                    color: '#dbce9c',
-                    borderColor: '#dbce9c',
-                    borderWidth: '1px',
-                  }}
-                >
-                  <CardHeader className="p-3 pb-0">
-                    <CardTitle className="text-md font-bold text-white">
-                      {event.summary.split('-').map((part, i, arr) =>
-                        i < arr.length - 1 ? (
-                          <React.Fragment key={i}>
-                            {part.trim()}-
-                            <br />
-                          </React.Fragment>
-                        ) : (
-                          part.trim()
-                        )
-                      )}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardDescription className="mb-2 pl-3 text-sm font-thin">
-                    {event.location ? event.location : 'Plats kommer snart'}
-                  </CardDescription>
-                  <CardFooter className="text-sm pl-3">
-                    {formatDateTime(event.start.dateTime || event.start.date!)[1]} -{' '}
-                    {formatDateTime(event.end.dateTime || event.end.date!)[1]}
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          ) : (
-          /* ----- Week view (Monday -> Sunday, show empty days) ----- */
-          currentWeekDates.map((date, index) => {
+                  event={event}
+                  highlight={currentDate === todayStr}
+                  formatDateTime={formatDateTime}
+                />
+              ))
+            ) : (
+              <div className="rounded-2xl border border-dashed border-white/15 bg-white/5 px-6 py-12 text-center text-white/50">
+                Inga aktiviteter denna dag.
+              </div>
+            )}
+          </div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 lg:grid-cols-7 gap-3">
+          {currentWeekDates.map((date) => {
             const isToday = date === todayStr
-            return (
-              <div key={date} className={`p-2 ${isToday ? 'border-yellow-100' : '' } ${index % 2 === 0 ? 'bg-[#3a0000]' : 'bg-[#2a0000]'} ${(index === 0) ? 'rounded-tl-xl sm:rounded-bl-xl rounded-tr-xl' : ''} ${(index === 6) ? 'sm:rounded-tr-xl rounded-bl-xl rounded-br-xl' : ''}`}>
-                <h3 className="text-center font-semibold mt-2 text-lg">{weekdayShort(date)}</h3>
-                <h2 className="text-center font-bold">{date}</h2>
+            const dayEvents = eventsByDate[date] || []
 
-                {(eventsByDate[date] || []).map((event, idx) => (
-                  <Card
-                    key={idx}
-                    className={`my-6 sm:mx-auto text-white shadow-lg hover:scale-105 transition-transform duration-200 ${
-                      parseFloat(formatDateTime(event.end.dateTime || event.end.date!)[1]) -
-                        parseFloat(formatDateTime(event.start.dateTime || event.start.date!)[1]) >
-                      2
-                        ? 'min-h-54'
-                        : 'min-h-20'
-                    }`}
-                    style={{
-                      backgroundColor: isToday ? '#800000' : '#4a0000',
-                      color: '#dbce9c',
-                      borderColor: '#dbce9c',
-                      borderWidth: '1px',
-                    }}
-                  >
-                    <CardHeader className="p-3 pb-0 ">
-                      <CardTitle className="text-md font-bold text-white">
-                        {event.summary.split('-').map((part, i, arr) =>
-                          i < arr.length - 1 ? (
-                            <React.Fragment key={i}>
-                              {part.trim()}-
-                              <br />
-                            </React.Fragment>
-                          ) : (
-                            part.trim()
-                          )
-                        )}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardDescription className="mb-2 pl-3 text-sm font-thin">
-                      {event.location ? event.location : 'Plats kommer snart'}
-                    </CardDescription>
-                    <CardFooter className="text-sm pl-3">
-                      {formatDateTime(event.start.dateTime || event.start.date!)[1]} -{' '}
-                      {formatDateTime(event.end.dateTime || event.end.date!)[1]}
-                    </CardFooter>
-                  </Card>
-                ))}
+            return (
+              <div
+                key={date}
+                className={`rounded-2xl border p-3 min-h-[260px] ${
+                  isToday
+                    ? "border-white/30 bg-white/10"
+                    : "border-white/10 bg-white/5"
+                }`}
+              >
+                <div className="mb-4 text-center">
+                  <p className="text-white/60 text-xs uppercase tracking-widest">
+                    {weekdayShort(date)}
+                  </p>
+                  <h3 className="text-white font-semibold">{date}</h3>
+                </div>
+
+                <div className="space-y-3">
+                  {dayEvents.length > 0 ? (
+                    dayEvents.map((event, idx) => (
+                      <EventCard
+                        key={idx}
+                        event={event}
+                        highlight={isToday}
+                        compact
+                        formatDateTime={formatDateTime}
+                      />
+                    ))
+                  ) : (
+                    <div className="rounded-xl border border-dashed border-white/10 px-3 py-6 text-center text-xs text-white/40">
+                      Inga aktiviteter
+                    </div>
+                  )}
+                </div>
               </div>
             )
-          })
-        )}
-      </div>
+          })}
+        </div>
+      )}
     </div>
+  )
+}
+
+function EventCard({
+  event,
+  highlight,
+  compact = false,
+  formatDateTime,
+}: {
+  event: EventItem
+  highlight: boolean
+  compact?: boolean
+  formatDateTime: (dateTimeString: string) => [string, string]
+}) {
+  const startTime = formatDateTime(event.start.dateTime || event.start.date || "")[1]
+  const endTime = formatDateTime(event.end.dateTime || event.end.date || "")[1]
+
+  return (
+    <Card
+      className={`border shadow-none ${
+        highlight
+          ? "border-white/20 bg-black/40"
+          : "border-white/10 bg-black/30"
+      } ${compact ? "rounded-xl" : "rounded-2xl"}`}
+    >
+      <CardHeader className={compact ? "p-3 pb-1" : "p-4 pb-2"}>
+        <CardTitle
+          className={`text-white leading-snug ${
+            compact ? "text-sm" : "text-base md:text-lg"
+          }`}
+        >
+          {event.summary.split("-").map((part, i, arr) =>
+            i < arr.length - 1 ? (
+              <React.Fragment key={i}>
+                {part.trim()}-
+                <br />
+              </React.Fragment>
+            ) : (
+              part.trim()
+            )
+          )}
+        </CardTitle>
+      </CardHeader>
+
+      <CardDescription
+        className={`text-white/60 ${compact ? "px-3 text-xs" : "px-4 text-sm"}`}
+      >
+        {event.location || "Plats kommer snart"}
+      </CardDescription>
+
+      <CardFooter
+        className={`text-white/80 ${compact ? "px-3 pt-2 text-xs" : "px-4 pt-3 text-sm"}`}
+      >
+        {startTime && endTime ? `${startTime} - ${endTime}` : "Tid saknas"}
+      </CardFooter>
+    </Card>
   )
 }
