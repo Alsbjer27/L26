@@ -17,7 +17,6 @@ const trattatello = localFont({
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      
       <title>Legionen</title>
       <body className="w-full min-h-screen">
        <div className="fixed inset-0 -z-10 pointer-events-none">

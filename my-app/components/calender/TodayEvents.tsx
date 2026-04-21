@@ -39,10 +39,10 @@ export default function TodayEvents({
       try {
         const res = await fetch(`/api/googlecal?q=${query}`)
 
-        if (!res.ok) {
-          console.error("Failed to fetch events:", res.statusText)
-          return
-        }
+        // if (!res.ok) {
+        //   console.error("Failed to fetch events:", res.statusText)
+        //   return
+        // }
 
         const data: EventItem[] = await res.json()
         setEvents(data)
