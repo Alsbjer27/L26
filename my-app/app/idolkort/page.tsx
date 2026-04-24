@@ -34,7 +34,12 @@ const cards: CardData[] = [
                   Med sin mantel kommer den vise att väva ett sprakande rött norrsken som ska driva bort skuggorna och omsluta Nollan i trygghet, kanske.
 `},
   
-  { id: "3", name: "Penny G. Arflode", image: "/cards/Mary.png", password: "φυτάγεια", description: "" },
+  { id: "3", name: "Neah B. Louza", image: "/cards/Mary.png", password: "etintrof", description: `Neah B. Louza föddes i stjärntecknet fiskarna under det röda norrskenets dans, på en kväll när himlen var jätte jätte jätte jätte fin. 
+                    Egentligen vet ingen riktigt varför just Neah blev född i fiskarnas tecken. Kanske för att universum tyckte att någon behövde vara disträ, drömmande och smått klumpig på samma gång. Eller kanske ingen anledning alls.
+                    Neah är universums självutnämnda expert på att stirra ut i tomma intet. Hon kan stå i jätte jätte jätte jätte många minuter medan hon funderar högt på livets viktiga frågor, som varför kometer inte har smak eller om meteorer egentligen är rymdens popcorn. 
+                    Hennes mantel är alltid ett potentiellt hinder, och ibland snubblar hon över sina egna fötter… Men det är okej, någon måste ju göra universum lite mer underhållande.
+                    Disträ? Absolut. Förrvirrad? Definitivt. Charmig? Oerhört. Hon kan börja gå åt ett håll och sluta i ett helt annat, mitt i en mening om spiraler av stjärnstoft, och ändå hitta exakt det som behövs. Nollan kan alltid lita på att hon är där för att visa vägen, även om det tar tio minuter att komma dit... 
+  ` },
   
   { id: "4", name: "Ray. L. Wade", image: "/cards/Cloe.png", password: "stampontheground", description: "" },
   
@@ -139,16 +144,20 @@ export default function Idolkort() {
       </div>
 
       {message && <p className="text-white mb-6">{message}</p>}
+
+
       {/* LEFT SIDE: text panel */}
       <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-50 w-full max-w-6xl">   
-        <div className="w-full max-w-md min-h-[320px] rounded-2xl bg-gray-200/2 backdrop-blur-sm p-6 text-white">
-          {isCurrentUnlocked ? (
-            <>
-              <h2 className="text-2xl font-bold mb-4">{currentCard.name}</h2>
-              <p className="leading-relaxed text-white/90">
-                {currentCard.description}
-              </p>
-            </>
+        <div className="w-full max-w-md h-[320px] rounded-2xl bg-gray-200/5 backdrop-blur-sm p-6 text-white">
+  {isCurrentUnlocked ? (
+    <div className="h-full flex flex-col">
+      <h2 className="text-2xl font-bold mb-4 shrink-0">{currentCard.name}</h2>
+        <div className="overflow-y-auto flex-1 custom-scrollbar pr-2">
+                  <p className="leading-relaxed text-white/90">
+                  {currentCard.description}
+                </p>
+              </div>
+            </div>
           ) : (
             <div className="h-full flex flex-col justify-center items-center text-center">
               <h2 className="text-2xl font-bold mb-4 text-white/60">
@@ -170,7 +179,7 @@ export default function Idolkort() {
 
           return (
             <CarouselItem key={card.id}>
-              <Card className="bg-gray-100/1 border-none">
+              <Card className="bg-gray-200/5 border-none">
                 <CardContent className="p-4 flex items-center justify-center">
                   <div className="relative w-full aspect-[60/86]">
                     {isUnlocked ? (

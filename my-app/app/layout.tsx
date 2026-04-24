@@ -8,11 +8,18 @@ import DarkVeilBackground from "@/components/reactbits/DarkVeilBackground";
 import ShinyText from "@/components/reactbits/ShinyText"
 import localFont from "next/font/local"
 import GooeyNavUse from "@/components/reactbits/GooeyNavUse"
+import LogoLoop from "@/components/LogoLoop"
 
 const trattatello = localFont({
   src: "./fonts/Trattatello/Trattatello/Trattatello.ttf",
   display: "swap",
 })
+
+const logos = [
+  { src: "/logo2.gif", alt: "Legionen", href: "/" },
+  { src: "/Spons/ravencraft.png", alt: "Tray", href: "/idolkort" },
+  { src: "/Spons/ica.pdf", alt: "Gru", href: "/idolkort" },
+]
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -23,7 +30,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <DarkVeilBackground />
         </div>
         <header className=" top-0 z-50 w-full">
-          <div className="text-white text-6xl mx-auto flex w-full max-w-9xl justify-center px-4 py-7 pt-4">
+          <div className="text-white text-6xl mx-auto flex w-full max-w-9xl justify-center px-4 py-5">
+            
           </div>
         </header>
 
@@ -33,6 +41,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <main>
           {children}
         </main>
+        <footer className="fixed bottom-0 left-0 w-full z-50 py-4">
+  <div className="mx-auto w-full max-w-9xl px-4">
+    <LogoLoop
+      logos={logos}
+      speed={80}
+      direction="left"
+      logoHeight={48}
+      gap={40}
+      pauseOnHover
+      scaleOnHover
+      fadeOut
+      fadeOutColor="transparent"
+      ariaLabel="Legionen logos"
+    />
+  </div>
+</footer>
       </body>
     </html>
   )

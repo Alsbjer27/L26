@@ -4,7 +4,7 @@ import TodayEvents from "@/components/calender/TodayEvents"
 
 export default function Home() {
   return (
-    <div className="w-full max-w-8xl mx-auto pt-30 px-6">
+    <div className="w-full max-w-8xl mx-auto pt-10 px-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
         {/* MT */}
         <div className="w-full max-w-sm mx-auto">
