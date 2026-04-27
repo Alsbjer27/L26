@@ -121,94 +121,136 @@ export default function Idolkort() {
   const isCurrentUnlocked = unlockedIds.includes(currentCard.id)
 
   return (
-    <main className="flex flex-col items-center mt-2 px-6">
-      <p className="text-xl mb-4 text-white">Har Nollan hittat ett lösenord? Testa skriva in det här, kanske.</p>
-
-      <div className="flex gap-2 mb-8">
-        <Input
-          type="text"
-          placeholder="Lösenord..."
-          value={inputPassword}
-          onChange={(e) => setInputPassword(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") handleUnlock()
-          }}
-          className="w-72 text-white"
-        />
-        <button
-          onClick={handleUnlock}
-          className="px-4 py-2 rounded-md bg-neutral-300 text-black hover:bg-gray-200"
-        >
-          Lås in
-        </button>
-      </div>
-
-      {message && <p className="text-white mb-6">{message}</p>}
-
-
-      {/* LEFT SIDE: text panel */}
-      <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-50 w-full max-w-6xl">   
-        <div className="w-full max-w-md h-[320px] rounded-2xl bg-gray-200/5 backdrop-blur-sm p-6 text-white">
-  {isCurrentUnlocked ? (
-    <div className="h-full flex flex-col">
-      <h2 className="text-2xl font-bold mb-4 shrink-0">{currentCard.name}</h2>
-        <div className="overflow-y-auto flex-1 custom-scrollbar pr-2">
-                  <p className="leading-relaxed text-white/90">
-                  {currentCard.description}
-                </p>
-              </div>
-            </div>
-          ) : (
-            <div className="h-full flex flex-col justify-center items-center text-center">
-              <h2 className="text-2xl font-bold mb-4 text-white/60">
-                Låst
-              </h2>
-              <p className="text-white/50">
-                Nollan behöver mata in ett giltigt lösenord kanske
-              </p>
-            </div>
-          )}
+  <main className="w-full flex flex-col items-center px-6 pt-4 text-white">
+    {/* TOP PANEL */}
+    <section className="w-full max-w-6xl rounded-2xl border border-white/10 bg-gray-200/5 backdrop-blur-sm p-6 mb-8">
+      <div className="flex flex-col items-center text-center gap-4">
+        <div>
+          <h1 className="text-3xl font-bold tracking-wide text-orange-200">
+            Idolkort
+          </h1>
+          <p className="text-white/70 mt-2">
+            Har Nollan hittat ett lösenord? Testa skriva in det här, kanske.
+          </p>
         </div>
 
-        {/* RIGHT SIDE */}
-  <div className="w-full max-w-[300px] shrink-0">
-    <Carousel setApi={setApi} className="w-full">
-      <CarouselContent>
-        {cards.map((card) => {
-          const isUnlocked = unlockedIds.includes(card.id)
+        <div className="flex flex-col sm:flex-row gap-2 items-center">
+          <Input
+            type="text"
+            placeholder="Lösenord..."
+            value={inputPassword}
+            onChange={(e) => setInputPassword(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleUnlock()
+            }}
+            className="w-72 text-white bg-black/20 border-white/15 placeholder:text-white/40"
+          />
 
-          return (
-            <CarouselItem key={card.id}>
-              <Card className="bg-gray-200/5 border-none">
-                <CardContent className="p-4 flex items-center justify-center">
-                  <div className="relative w-full aspect-[60/86]">
-                    {isUnlocked ? (
-                      <Image
-                        src={card.image}
-                        alt={card.name}
-                        fill
-                        className="object-contain"
-                        unoptimized
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white/60">
-                        <p className="text-lg font-semibold mb-2">{card.name}</p>
-                        <p>Låst</p>
-                      </div>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            </CarouselItem>
-          )
-        })}
-      </CarouselContent>
+          <button
+            onClick={handleUnlock}
+            className="px-5 py-2 rounded-md bg-orange-200 text-black font-medium hover:bg-orange-100 transition-colors"
+          >
+            Lås in
+          </button>
+        </div>
 
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
-  </div>
+        {message && (
+          <p className="text-sm text-orange-200 bg-orange-200/10 border border-orange-200/20 px-4 py-2 rounded-full">
+            {message}
+          </p>
+        )}
+
+        <p className="text-sm text-white/50">
+          {unlockedIds.length} / {cards.length} kort upplåsta
+        </p>
       </div>
-    </main>
-  )
+    </section>
+
+    {/* CONTENT */}
+    <section className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-12 w-full max-w-6xl items-start">
+      {/* LEFT SIDE: text panel */}
+      <div className="w-full h-[360px] rounded-2xl border border-white/10 bg-gray-200/5 backdrop-blur-sm p-6 text-white shadow-lg">
+        {isCurrentUnlocked ? (
+          <div className="h-full flex flex-col">
+            <div className="shrink-0 border-b border-white/10 pb-4 mb-4">
+              <p className="text-sm text-orange-200 mb-1">
+                Upplåst kort
+              </p>
+              <h2 className="text-2xl font-bold">
+                {currentCard.name}
+              </h2>
+            </div>
+
+            <div className="overflow-y-auto flex-1 custom-scrollbar pr-2">
+              <p className="leading-relaxed text-white/85 whitespace-pre-line">
+                {currentCard.description || "Ingen beskrivning ännu."}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className="h-full flex flex-col justify-center items-center text-center">
+            <p className="text-sm text-orange-200/70 mb-2">
+              Kort {currentIndex + 1} av {cards.length}
+            </p>
+
+            <h2 className="text-2xl font-bold mb-4 text-white/60">
+              Låst
+            </h2>
+
+            <p className="text-white/50 max-w-sm">
+              Nollan behöver mata in ett giltigt lösenord kanske.
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* RIGHT SIDE: carousel */}
+      <div className="w-full max-w-[320px] mx-auto lg:mx-0 shrink-0">
+        <Carousel setApi={setApi} className="w-full">
+          <CarouselContent>
+            {cards.map((card) => {
+              const isUnlocked = unlockedIds.includes(card.id)
+
+              return (
+                <CarouselItem key={card.id}>
+                  <Card className="bg-gray-200/5 border border-white/10 backdrop-blur-sm shadow-lg">
+                    <CardContent className="p-4 flex items-center justify-center">
+                      <div className="relative w-full aspect-[60/86] rounded-xl overflow-hidden bg-black/20">
+                        {isUnlocked ? (
+                          <Image
+                            src={card.image}
+                            alt={card.name}
+                            fill
+                            className="object-contain"
+                            unoptimized
+                          />
+                        ) : (
+                          <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white/60 px-4">
+                            <p className="text-lg font-semibold mb-2">
+                              {card.name}
+                            </p>
+                            <p className="text-sm text-orange-200/70">
+                              Låst
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              )
+            })}
+          </CarouselContent>
+
+          <CarouselPrevious className="bg-black/40 border-white/10 text-white hover:bg-white/10" />
+          <CarouselNext className="bg-black/40 border-white/10 text-white hover:bg-white/10" />
+        </Carousel>
+
+        <p className="text-center text-sm text-white/50 mt-4">
+          Kort {currentIndex + 1} av {cards.length}
+        </p>
+      </div>
+    </section>
+  </main>
+)
 }

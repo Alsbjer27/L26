@@ -44,8 +44,16 @@ export default function TodayEvents({
         //   return
         // }
 
-        const data: EventItem[] = await res.json()
-        setEvents(data)
+        const data = await res.json()
+
+if (Array.isArray(data)) {
+  setEvents(data)
+} else if (Array.isArray(data.events)) {
+  setEvents(data.events)
+} else {
+  console.error("Unexpected events response:", data)
+  setEvents([])
+}
       } catch (error) {
         console.error("Error fetching events:", error)
       } finally {
