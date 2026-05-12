@@ -17,8 +17,10 @@ const trattatello = localFont({
 
 const logos = [
   { src: "/logo2.gif", alt: "Legionen", href: "/" },
-  { src: "/Spons/ravencraft.png", alt: "Tray", href: "/idolkort" },
+  { src: "/Spons/ravencraft.png", alt: "Ravencraft", href: "https://www.korps.se/?srsltid=AfmBOoocUFPpSrufWzU8HW2sbUeJNDB0qm_pMKFBUsqvMg9ByUU5Vjyy" },
   { src: "/Spons/ica.pdf", alt: "Gru", href: "/idolkort" },
+  { src: "/Spons/mera.png", alt: "MeraMärken", href: "https://www.mera.se/marken" },
+
 ]
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -45,9 +47,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   <div className="mx-auto w-full max-w-9xl px-4">
     <LogoLoop
       logos={logos}
-      speed={80}
+      speed={50}
       direction="left"
-      logoHeight={48}
+      logoHeight={60}
       gap={40}
       pauseOnHover
       scaleOnHover
