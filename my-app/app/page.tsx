@@ -1,41 +1,26 @@
-import Image from "next/image";
-import Link from "next/link";
-import TodayEvents from "@/components/calender/TodayEvents"
+import Image from "next/image"
 
 export default function Home() {
   return (
-    <div className="w-full max-w-8xl mx-auto pt-10 px-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
-        {/* MT */}
-        <div className="w-full max-w-sm mx-auto">
-          <TodayEvents
-            query="MT"
-            title="MT idag"
-            titleClassName="text-orange-200"
-          />
-        </div>
+    <main className="min-h-screen w-full flex items-center justify-center px-6 text-white">
+      <div className="flex flex-col items-center text-center max-w-3xl">
+        <Image
+          src="/logo2.gif"
+          alt="Legionen logo"
+          width={700}
+          height={400}
+          className="w-[700px] max-w-full h-auto object-contain mb-8"
+          unoptimized
+        />
 
-        {/* CENTER */}
-        <div className="flex items-center justify-center text-white text-5xl font-semibold">
-          <Image
-            src="/logo2.gif"
-            alt="Homepage symbol"
-            width={600}
-            height={600}
-            className="w-[700px] h-[400px] object-contain"
-            unoptimized
-          />
-        </div>
+        <p className="text-2xl md:text-3xl text-white/80 mb-3">
+          Webbplatsen är under konstruktion
+        </p>
 
-        {/* GDK */}
-        <div className="w-full max-w-sm mx-auto">
-          <TodayEvents
-            query="GDK"
-            title="GDK idag"
-            titleClassName="text-green-200"
-          />
-        </div>
+        <p className="text-lg md:text-xl text-white/50 max-w-xl">
+          Vi arbetar just nu med att bygga upp sidan. Mer information kommer snart.
+        </p>
       </div>
-    </div>
-  );
+    </main>
+  )
 }
