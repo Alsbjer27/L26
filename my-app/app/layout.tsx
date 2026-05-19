@@ -4,6 +4,7 @@ import "./globals.css"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
 import { NavigationMenuDemo } from "@/components/navigation-menu"
+import { usePathname } from "next/navigation"
 import DarkVeilBackground from "@/components/reactbits/DarkVeilBackground";
 import ShinyText from "@/components/reactbits/ShinyText"
 import localFont from "next/font/local"
@@ -23,7 +24,13 @@ const logos = [
 
 ]
 
+
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname()
+  
+  const hideLogoLoop =
+  pathname === "/kalender" ||
+  pathname === "/idolkort"
   return (
     <html lang="en">
       <title>Legionen</title>
@@ -43,22 +50,25 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <main>
           {children}
         </main>
-        <footer className="fixed bottom-0 left-0 w-full z-50 py-4">
-  <div className="mx-auto w-full max-w-9xl px-4">
-    <LogoLoop
-      logos={logos}
-      speed={50}
-      direction="left"
-      logoHeight={60}
-      gap={40}
-      pauseOnHover
-      scaleOnHover
-      fadeOut
-      fadeOutColor="transparent"
-      ariaLabel="Legionen logos"
-    />
-  </div>
-</footer>
+{!hideLogoLoop && (
+  <footer className="fixed bottom-0 left-0 w-full z-50 py-4 pointer-events-auto">
+    <div className="mx-auto w-full max-w-9xl px-4">
+      <LogoLoop
+        logos={logos}
+        speed={80
+        }
+        direction="left"
+        logoHeight={48}
+        gap={40}
+        pauseOnHover
+        scaleOnHover
+        fadeOut
+        fadeOutColor="transparent"
+        ariaLabel="Legionen logos"
+      />
+    </div>
+  </footer>
+)}
       </body>
     </html>
   )

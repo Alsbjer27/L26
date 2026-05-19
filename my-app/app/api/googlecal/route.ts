@@ -1,10 +1,8 @@
-
-
 import { google, calendar_v3 } from 'googleapis'
 import { NextResponse } from 'next/server'
 
+const SERVICE_ACCOUNT_KEY = process.env.CREDS_BASE64
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
-const SERVICE_ACCOUNT_KEY = process.env.CREDS
 
 export async function GET(req: Request) {
   console.log('📥 Incoming request to /api/googlecal')
@@ -33,23 +31,27 @@ export async function GET(req: Request) {
 }
 
 async function getAuth() {
-  console.log('🔑 Getting service account credentials...')
+  console.log("🔑 Getting service account credentials...")
+
   try {
     if (!SERVICE_ACCOUNT_KEY) {
-      throw new Error('Missing CREDS environment variable')
+      throw new Error("Missing CREDS_BASE64 environment variable")
     }
 
-    const credentials = JSON.parse(SERVICE_ACCOUNT_KEY)
-    console.log('📄 Parsed service account JSON successfully')
+    const json = Buffer.from(SERVICE_ACCOUNT_KEY, "base64").toString("utf-8")
+    const credentials = JSON.parse(json)
 
-    const auth = new google.auth.GoogleAuth({
-      credentials,
+    console.log("📄 Parsed service account JSON successfully")
+
+    const auth = new google.auth.JWT({
+      email: credentials.client_email,
+      key: credentials.private_key,
       scopes: SCOPES,
     })
 
-    return await auth.getClient()
+    return auth
   } catch (error) {
-    console.error('❌ Error loading service account credentials:', error)
+    console.error("❌ Error loading service account credentials:", error)
     return null
   }
 }
