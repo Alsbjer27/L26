@@ -145,33 +145,41 @@ export default function Idolkort() {
   }, [api])
 
   function handleUnlock() {
-    const matchedCard = cards.find((card) => card.password === inputPassword)
+  const trimmedPassword = inputPassword.trim()
 
-    if (!matchedCard) {
-      setMessage("Wrong password")
-      return
-    }
+  const matchedIndex = cards.findIndex(
+    (card) => card.password.trim() === trimmedPassword
+  )
 
-    if (!unlockedIds.includes(matchedCard.id)) {
-      setUnlockedIds((prev) => [...prev, matchedCard.id])
-    }
-
-    setMessage(`${matchedCard.name} UPPLÅST!!!`)
-    setInputPassword("")
+  if (matchedIndex === -1) {
+    setMessage("Fel lösenord")
+    return
   }
+
+  const matchedCard = cards[matchedIndex]
+
+  if (!unlockedIds.includes(matchedCard.id)) {
+    setUnlockedIds((prev) => [...prev, matchedCard.id])
+  } else {
+    setMessage(`${matchedCard.name} är redan upplåst.`)
+  }
+
+  setInputPassword("")
+
+  // Jump carousel + text panel to the unlocked card
+  api?.scrollTo(matchedIndex)
+  setCurrentIndex(matchedIndex)
+}
 
   const currentCard = cards[currentIndex]
   const isCurrentUnlocked = unlockedIds.includes(currentCard.id)
 
   return (
-  <main className="w-full flex flex-col items-center px-6 pt-4 text-white">
+  <main className="w-full flex flex-col items-center px-6 pt-2 text-white">
     {/* TOP PANEL */}
-    <section className="w-full max-w-6xl rounded-2xl border border-white/10 bg-gray-200/5 backdrop-blur-sm p-6 mb-8">
+    <section className="w-full max-w-6xl rounded-2xl border border-white/10 bg-gray-200/5 backdrop-blur-sm p-6 mb-4">
       <div className="flex flex-col items-center text-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-wide text-orange-200">
-            Idolkort
-          </h1>
           <p className="text-white/70 mt-2">
             Har Nollan hittat ett lösenord? Testa skriva in det här, kanske.
           </p>

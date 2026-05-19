@@ -123,16 +123,10 @@ export default function Schema() {
   const todayStr = new Date().toISOString().split("T")[0]
 
   return (
-    <div id="schema" className="w-full max-w-7xl mx-auto px-4 md:px-6 py-10">
+    <div id="schema" className="w-full max-w-7xl mx-auto px-4 md:px-6 py-2">
       {/* TOP PANEL */}
-      <div className="mb-8 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-md shadow-2xl">
+      <div className="mb-4 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-md shadow-2xl">
         <div className="flex flex-col gap-6 p-6 md:p-8">
-          <div className="flex flex-col gap-2">
-            <p className="text-white/60 text-sm md:text-base">
-              Se dagens aktiviteter eller hela veckan för ditt program.
-            </p>
-          </div>
-
           <div className="flex flex-col xl:flex-row xl:items-end xl:justify-between gap-6">
             <div className="flex flex-col gap-4">
               {/* View Toggle */}
