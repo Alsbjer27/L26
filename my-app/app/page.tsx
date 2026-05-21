@@ -5,7 +5,7 @@ export default function Home() {
     <main className="min-h-screen w-full flex items-center justify-center px-6 text-white">
       <div className="flex flex-col items-center text-center max-w-3xl">
         <Image
-          src="/logo2.gif"
+          src="/Logo2.gif"
           alt="Legionen logo"
           width={700}
           height={400}
