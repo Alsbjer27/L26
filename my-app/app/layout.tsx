@@ -10,6 +10,7 @@ import ShinyText from "@/components/reactbits/ShinyText"
 import localFont from "next/font/local"
 import GooeyNavUse from "@/components/reactbits/GooeyNavUse"
 import LogoLoop from "@/components/LogoLoop"
+import { Analytics } from "@vercel/analytics/next"
 
 const trattatello = localFont({
   src: "./fonts/Trattatello/Trattatello/Trattatello.ttf",
@@ -17,7 +18,7 @@ const trattatello = localFont({
 })
 
 const logos = [
-  { src: "/Spons/ravencraft.png", alt: "Ravencraft", href: "https://www.korps.se/?srsltid=AfmBOoocUFPpSrufWzU8HW2sbUeJNDB0qm_pMKFBUsqvMg9ByUU5Vjyy" },
+  { src: "/Spons/RavenCraftBakgrund.png", alt: "Ravencraft", href: "https://www.korps.se/?srsltid=AfmBOoocUFPpSrufWzU8HW2sbUeJNDB0qm_pMKFBUsqvMg9ByUU5Vjyy" },
   { src: "/Spons/ica.png", alt: "Ica Strömmen", href: "https://www.ica.se/butiker/nara/norrkoping/ica-nara-strommen-norrkoping-1004556/?icqid=Cj0KCQjwlLDQBhDjARIsAPlIefHt4cMgDIcdg8WCXNN448VI2aGUuBCUJTIqcktMfcr9ASLGPOiJwdoaAjKEEALw_wcB&gad_source=1&gad_campaignid=18725114863&gbraid=0AAAAADKgUie6NGu5wVBJqMUSepQVwnLYc&gclid=Cj0KCQjwlLDQBhDjARIsAPlIefHt4cMgDIcdg8WCXNN448VI2aGUuBCUJTIqcktMfcr9ASLGPOiJwdoaAjKEEALw_wcB" },
   { src: "/Spons/mera.png", alt: "MeraMärken", href: "https://www.mera.se/marken" },
 
@@ -39,7 +40,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
         <header className=" top-0 z-50 w-full">
           <div className="text-white text-6xl mx-auto flex w-full max-w-9xl justify-center px-4 py-5">
-            
+            <Analytics />
           </div>
         </header>
 

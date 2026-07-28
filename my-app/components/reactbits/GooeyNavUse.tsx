@@ -6,7 +6,7 @@ const items = [
   { label: "Hem", href: "/" },
   { label: "Kalender", href: "/kalender" },
   { label: "Idolkort", href: "/idolkort" },
-  { label: "Phadderistspelet", href: "/phadderistspelet" },
+  // { label: "Phadderistspelet", href: "/phadderistspelet" },
   { label: "Nolleboken", href: "/nolleboken" },
 ]
 

@@ -16,15 +16,38 @@ export default function Home() {
         </div>
 
         {/* CENTER */}
-        <div className="flex items-center justify-center text-white text-5xl font-semibold">
-          <Image
-            src="/logo2.gif"
-            alt="Homepage symbol"
-            width={600}
-            height={600}
-            className="w-[700px] h-[400px] object-contain"
-            unoptimized
-          />
+        {/* CENTER */}
+          <div className="flex flex-col items-center justify-center">
+            <Image
+              src="/logo2.gif"
+              alt="Homepage symbol"
+              width={600}
+              height={600}
+              className="h-[400px] w-[700px] object-contain"
+              unoptimized
+            />
+
+          <a
+            href="YOUR_GOOGLE_FORM_LINK"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              -mt-2
+              rounded-full
+              bg-white
+              px-8
+              py-3
+              text-base
+              font-semibold
+              text-black
+              transition
+              duration-200
+              hover:scale-105
+              hover:bg-neutral-200
+            "
+          >
+            Nollankäten
+          </a>
         </div>
 
         {/* GDK */}

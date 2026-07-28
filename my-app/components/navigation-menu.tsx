@@ -80,12 +80,12 @@ export function NavigationMenuDemo() {
         </NavigationMenuLink>
       </NavigationMenuItem>
 
-      {/* Direct link */}
+      {/* Direct link
       <NavigationMenuItem className="bg-neutral-300 text-black hover:bg-gray-200 rounded-lg border-solid border-black">
         <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
           <Link href="/phadderistspelet">Phadderistspelet</Link>
         </NavigationMenuLink>
-      </NavigationMenuItem>
+      </NavigationMenuItem> */}
 
       {/* Dropdown: Nolleboken */}
       <NavigationMenuItem className="bg-neutral-300 text-black hover:bg-gray-200 rounded-lg border-solid border-black">
