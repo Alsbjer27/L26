@@ -115,85 +115,6 @@ const useImageLoader = (
   }, dependencies);
 };
 
-const useAnimationLoop = (
-  trackRef: React.RefObject<HTMLDivElement | null>,
-  targetVelocity: number,
-  seqWidth: number,
-  seqHeight: number,
-  isHovered: boolean,
-  hoverSpeed: number | undefined,
-  isVertical: boolean
-) => {
-  const rafRef = useRef<number | null>(null);
-  const lastTimestampRef = useRef<number | null>(null);
-  const offsetRef = useRef(0);
-  const velocityRef = useRef(0);
-
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const prefersReduced =
-      typeof window !== 'undefined' &&
-      window.matchMedia &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const seqSize = isVertical ? seqHeight : seqWidth;
-
-    if (seqSize > 0) {
-      offsetRef.current = ((offsetRef.current % seqSize) + seqSize) % seqSize;
-      const transformValue = isVertical
-        ? `translate3d(0, ${-offsetRef.current}px, 0)`
-        : `translate3d(${-offsetRef.current}px, 0, 0)`;
-      track.style.transform = transformValue;
-    }
-
-    if (prefersReduced) {
-      track.style.transform = isVertical ? 'translate3d(0, 0, 0)' : 'translate3d(0, 0, 0)';
-      return () => {
-        lastTimestampRef.current = null;
-      };
-    }
-
-    const animate = (timestamp: number) => {
-      if (lastTimestampRef.current === null) {
-        lastTimestampRef.current = timestamp;
-      }
-
-      const deltaTime = Math.max(0, timestamp - lastTimestampRef.current) / 1000;
-      lastTimestampRef.current = timestamp;
-
-      const target = isHovered && hoverSpeed !== undefined ? hoverSpeed : targetVelocity;
-
-      const easingFactor = 1 - Math.exp(-deltaTime / ANIMATION_CONFIG.SMOOTH_TAU);
-      velocityRef.current += (target - velocityRef.current) * easingFactor;
-
-      if (seqSize > 0) {
-        let nextOffset = offsetRef.current + velocityRef.current * deltaTime;
-        nextOffset = ((nextOffset % seqSize) + seqSize) % seqSize;
-        offsetRef.current = nextOffset;
-
-        const transformValue = isVertical
-          ? `translate3d(0, ${-offsetRef.current}px, 0)`
-          : `translate3d(${-offsetRef.current}px, 0, 0)`;
-        track.style.transform = transformValue;
-      }
-
-      rafRef.current = requestAnimationFrame(animate);
-    };
-
-    rafRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      if (rafRef.current !== null) {
-        cancelAnimationFrame(rafRef.current);
-        rafRef.current = null;
-      }
-      lastTimestampRef.current = null;
-    };
-  }, [targetVelocity, seqWidth, seqHeight, isHovered, hoverSpeed, isVertical]);
-};
-
 export const LogoLoop = React.memo<LogoLoopProps>(
   ({
     logos,
@@ -270,8 +191,6 @@ export const LogoLoop = React.memo<LogoLoopProps>(
     useResizeObserver(updateDimensions, [containerRef, seqRef], [logos, gap, logoHeight, isVertical]);
 
     useImageLoader(seqRef, updateDimensions, [logos, gap, logoHeight, isVertical]);
-
-    useAnimationLoop(trackRef, targetVelocity, seqWidth, seqHeight, isHovered, effectiveHoverSpeed, isVertical);
 
     const cssVariables = useMemo(
       () =>
@@ -429,8 +348,48 @@ export const LogoLoop = React.memo<LogoLoopProps>(
       [width, cssVariables, style, isVertical]
     );
 
+    const sequenceSize = isVertical ? seqHeight : seqWidth;
+    const animationDuration =
+      sequenceSize > 0 && Math.abs(targetVelocity) > 0
+        ? sequenceSize / Math.abs(targetVelocity)
+        : 0;
+
+    const trackStyle = useMemo(
+      (): React.CSSProperties => ({
+        '--logoloop-distance': `${sequenceSize}px`,
+        animationName: isVertical ? 'logoloop-scroll-y' : 'logoloop-scroll-x',
+        animationDuration: animationDuration ? `${animationDuration}s` : '0s',
+        animationTimingFunction: 'linear',
+        animationIterationCount: 'infinite',
+        animationDirection: targetVelocity < 0 ? 'reverse' : 'normal',
+        animationPlayState:
+          isHovered && effectiveHoverSpeed === 0 ? 'paused' : 'running',
+      } as React.CSSProperties),
+      [
+        sequenceSize,
+        animationDuration,
+        targetVelocity,
+        isVertical,
+        isHovered,
+        effectiveHoverSpeed,
+      ]
+    );
+
     return (
       <div ref={containerRef} className={rootClasses} style={containerStyle} role="region" aria-label={ariaLabel}>
+        <style>{`
+          @keyframes logoloop-scroll-x {
+            from { transform: translate3d(0, 0, 0); }
+            to { transform: translate3d(calc(-1 * var(--logoloop-distance)), 0, 0); }
+          }
+          @keyframes logoloop-scroll-y {
+            from { transform: translate3d(0, 0, 0); }
+            to { transform: translate3d(0, calc(-1 * var(--logoloop-distance)), 0); }
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .logoloop-track { animation: none !important; transform: none !important; }
+          }
+        `}</style>
         {fadeOut && (
           <>
             {isVertical ? (
@@ -477,11 +436,12 @@ export const LogoLoop = React.memo<LogoLoopProps>(
 
         <div
           className={cx(
-            'flex will-change-transform select-none relative z-0',
+            'logoloop-track flex will-change-transform select-none relative z-0',
             'motion-reduce:transform-none',
             isVertical ? 'flex-col h-max w-full' : 'flex-row w-max'
           )}
           ref={trackRef}
+          style={trackStyle}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >

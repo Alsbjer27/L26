@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { Menu, X } from "lucide-react"
 
 interface GooeyNavItem {
   label: string
@@ -43,6 +44,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
   }
 
   const [activeIndex, setActiveIndex] = useState<number>(getActiveIndex)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const noise = (n = 1) => n / 2 - Math.random() * n
 
@@ -165,6 +167,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
 
   useEffect(() => {
     setActiveIndex(getActiveIndex())
+    setIsMenuOpen(false)
   }, [pathname])
 
   useEffect(() => {
@@ -355,14 +358,25 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
         `}
       </style>
 
-      <div className="relative" ref={containerRef}>
+      <div className="relative w-full md:w-auto" ref={containerRef}>
         <nav
-          className="relative flex justify-center bg-gray-300/10 rounded-4xl py-3"
+          aria-label="Huvudmeny"
+          className="relative flex w-full flex-col items-center rounded-[2rem] bg-gray-300/10 px-2 py-2 md:w-auto md:py-3"
           style={{ transform: "translate3d(0,0,0.01px)" }}
         >
+          <button
+            type="button"
+            className="flex min-h-11 w-full items-center justify-between rounded-full px-4 text-left font-medium text-white md:hidden"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
+            onClick={() => setIsMenuOpen((open) => !open)}
+          >
+            {isMenuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+          </button>
           <ul
+            id="mobile-navigation"
             ref={navRef}
-            className="relative z-[3] m-0 flex list-none flex-wrap gap-4 p-0 px-4"
+            className={`${isMenuOpen ? "flex" : "hidden"} relative z-[3] m-0 w-full list-none flex-col gap-1 p-2 md:flex md:w-auto md:flex-row md:gap-2 md:p-0 md:px-3 lg:gap-4 lg:px-4`}
             style={{
               color: "white",
               textShadow: "0 1px 1px hsl(205deg 30% 10% / 0.2)",
@@ -381,7 +395,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
                     const liEl = e.currentTarget.parentElement as HTMLElement | null
                     if (liEl) handleActivate(liEl, index)
                   }}
-                  className="inline-block px-[1em] py-[0.6em] outline-none"
+                  className="block min-h-11 px-4 py-3 outline-none md:min-h-0 md:px-[0.8em] md:py-[0.55em] lg:px-[1em] lg:py-[0.6em]"
                 >
                   {item.label}
                 </Link>

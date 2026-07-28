@@ -1,64 +1,112 @@
 import Image from "next/image";
 import Link from "next/link";
-import TodayEvents from "@/components/calender/TodayEvents"
+import TodayEvents from "@/components/calender/TodayEvents";
 
 export default function Home() {
   return (
-    <div className="w-full max-w-8xl mx-auto pt-10 px-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
-        {/* MT */}
-        <div className="w-full max-w-sm mx-auto">
-          <TodayEvents
-            query="MT"
-            title="MT idag"
-            titleClassName="text-orange-200"
-          />
-        </div>
-
-        {/* CENTER */}
-        {/* CENTER */}
-          <div className="flex flex-col items-center justify-center">
-            <Image
-              src="/logo2.gif"
-              alt="Homepage symbol"
-              width={600}
-              height={600}
-              className="h-[400px] w-[700px] object-contain"
-              unoptimized
-            />
-
-          <a
-            href="YOUR_GOOGLE_FORM_LINK"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="w-full overflow-x-hidden">
+      <div
+        className="
+          w-full max-w-[1440px] mx-auto
+          px-4 sm:px-6
+          pt-6 md:pt-10
+          pb-12
+        "
+      >
+        <div
+          className="
+            grid grid-cols-1
+            lg:grid-cols-[minmax(0,1fr)_minmax(280px,1.15fr)_minmax(0,1fr)]
+            gap-8 lg:gap-10 xl:gap-14
+            items-start
+          "
+        >
+          {/* CENTER: first on mobile, middle on desktop */}
+          <section
             className="
-              -mt-2
-              rounded-full
-              bg-white
-              px-8
-              py-3
-              text-base
-              font-semibold
-              text-black
-              transition
-              duration-200
-              hover:scale-105
-              hover:bg-neutral-200
+              order-1
+              lg:order-2
+              flex flex-col
+              items-center justify-center
+              min-w-0
             "
           >
-            Nollankäten
-          </a>
+            <Image
+              src="/Logo2.gif"
+              alt="Legionen"
+              width={600}
+              height={600}
+              unoptimized
+              className="
+                w-full
+                max-w-[330px]
+                sm:max-w-[420px]
+                lg:max-w-[520px]
+                h-auto
+                object-contain
+              "
+            />
+
+            <Link
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfaIeKdbCE-xuRHNWzKdftuczK0ENEj9f3_fvNI33vGV-Zq7Q/viewform?usp=dialog"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                mt-4
+                inline-flex
+                min-h-12
+                items-center justify-center
+                rounded-full
+                bg-white
+                px-8 py-3
+                font-semibold text-black
+                transition
+                hover:bg-neutral-200
+                focus-visible:outline-none
+                focus-visible:ring-2
+                focus-visible:ring-white
+              "
+            >
+              Nollankäten
+            </Link>
+          </section>
+
+          {/* MT: second on mobile, left on desktop */}
+          <section
+            className="
+              order-2
+              lg:order-1
+              w-full
+              max-w-md
+              mx-auto
+            "
+          >
+            <TodayEvents
+              query="MT"
+              title="MT idag"
+              titleClassName="text-orange-200"
+            />
+          </section>
+
+          {/* GDK: third on mobile, right on desktop */}
+          <section
+            className="
+              order-3
+              lg:order-3
+              w-full
+              max-w-md
+              mx-auto
+            "
+          >
+            <TodayEvents
+              query="GDK"
+              title="GDK idag"
+              titleClassName="text-green-200"
+            />
+          </section>
         </div>
 
-        {/* GDK */}
-        <div className="w-full max-w-sm mx-auto">
-          <TodayEvents
-            query="GDK"
-            title="GDK idag"
-            titleClassName="text-green-200"
-          />
-        </div>
       </div>
-    </div>
+    </main>
   );
 }

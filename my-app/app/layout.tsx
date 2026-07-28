@@ -10,7 +10,6 @@ import ShinyText from "@/components/reactbits/ShinyText"
 import localFont from "next/font/local"
 import GooeyNavUse from "@/components/reactbits/GooeyNavUse"
 import LogoLoop from "@/components/LogoLoop"
-import { Analytics } from "@vercel/analytics/next"
 
 const trattatello = localFont({
   src: "./fonts/Trattatello/Trattatello/Trattatello.ttf",
@@ -34,30 +33,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <title>Legionen</title>
-      <body className="w-full min-h-screen">
+      <body className="flex min-h-screen w-full flex-col">
        <div className="fixed inset-0 -z-10 pointer-events-none">
           <DarkVeilBackground />
         </div>
-        <header className=" top-0 z-50 w-full">
-          <div className="text-white text-6xl mx-auto flex w-full max-w-9xl justify-center px-4 py-5">
-            <Analytics />
-          </div>
-        </header>
-
-        <div className="mx-auto flex w-full max-w-9xl justify-center px-4 py-2 ">
+        <div className="relative z-50 mx-auto flex w-full max-w-[1440px] justify-center px-4 py-3 sm:py-5">
           <GooeyNavUse/>
         </div>
-        <main>
+        <main className="flex-1">
           {children}
         </main>
 {!hideLogoLoop && (
-  <footer className="fixed bottom-0 left-0 w-full z-50 py-4 pointer-events-auto">
-    <div className="mx-auto w-full max-w-9xl px-4">
+  <footer className="relative z-10 w-full border-t border-white/10 bg-black/20 py-5 sm:py-6">
+    <div className="mx-auto w-full max-w-[1440px] px-4">
       <LogoLoop
         logos={logos}
         speed={50}
         direction="left"
-        logoHeight={48}
+        logoHeight={44}
         gap={40}
         pauseOnHover
         scaleOnHover
