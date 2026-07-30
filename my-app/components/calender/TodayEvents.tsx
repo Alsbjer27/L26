@@ -113,10 +113,10 @@ if (Array.isArray(data)) {
           {todaysEvents.map((event, index) => (
             <Card
               key={index}
-              className="rounded-2xl border border-white/10 bg-black/30 shadow-none"
+              className="min-w-0 gap-2 overflow-hidden rounded-2xl border border-white/10 bg-black/30 py-0 shadow-none"
             >
               <CardHeader className="p-4 pb-2">
-                <CardTitle className="text-white text-base leading-snug">
+                <CardTitle className="min-w-0 whitespace-normal break-words [overflow-wrap:anywhere] text-base leading-snug text-white">
                   {event.summary}
                 </CardTitle>
               </CardHeader>
@@ -125,7 +125,7 @@ if (Array.isArray(data)) {
                 {event.location || "Plats kommer snart"}
               </CardDescription>
 
-              <CardFooter className="px-4 pt-3 text-sm text-white/80">
+              <CardFooter className="px-4 pb-4 pt-1 text-sm text-white/80">
                 {formatTime(event.start.dateTime)}
                 {event.start.dateTime && event.end.dateTime ? " - " : ""}
                 {formatTime(event.end.dateTime)}

@@ -32,7 +32,7 @@ const cards: CardData[] = [
                     Energin tung som staven han själv höll i.
 `},
   
-  { id: "2", name: "Moe D. Low", image: "/cards/Gru.png", password: "grukencheck", 
+  { id: "2", name: "Moe D. Low", image: "/cards/Gru.png", password: "Moedy Blues", 
     description: `Långt ute i kosmos vakade den uråldriga röda dvärgstjärnan över världsalltets ordning. Under Vågens tecken satt Moe D. Low och lyssnade till stjärnornas oroliga viskningar om en obalans på jorden. 
                   Mörkret hade i hemlighet samlat sina krafter där för att släcka Nollans gnista och sprida kaos. 
                   När harmonin på den lilla blå planeten plötsligt vägrade gå exakt jämnt ut kallades den vise vicen ner från himlavalvet för att ta hand om de brutna resterna. 
@@ -103,7 +103,7 @@ const cards: CardData[] = [
                     då är det bäst att vara redo.
 `},
   
-  { id: "10", name: "Wick Thorfield", image: "/cards/Con Soul.png", password: " puhctekxile", description: `När Wick föddes under Skorpionens stjärntecken hände något mårkligt. 
+  { id: "10", name: "Wick Thorfield", image: "/cards/Con Soul.png", password: " puhctekxilef", description: `När Wick föddes under Skorpionens stjärntecken hände något mårkligt. 
                      Stjärnornas krafter samlades och en del av deras energi blev en del av Wick. 
                      Med denna gåva kan Wick känna och styra de osynliga krafter som rör sig genom världen. 
                      Wick rör sig sällan utan att veta exakt vart riktningen leder.

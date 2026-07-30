@@ -521,7 +521,7 @@ function EventCard({
 
   return (
     <Card
-      className={`border shadow-none ${
+      className={`min-w-0 gap-2 overflow-hidden border py-0 shadow-none ${
         highlight
           ? "border-white/20 bg-black/40"
           : "border-white/10 bg-black/30"
@@ -529,20 +529,11 @@ function EventCard({
     >
       <CardHeader className={compact ? "p-3 pb-1" : "p-4 pb-2"}>
         <CardTitle
-          className={`text-white leading-snug ${
+          className={`min-w-0 whitespace-normal break-words [overflow-wrap:anywhere] text-white leading-snug ${
             compact ? "text-sm" : "text-base md:text-lg"
           }`}
         >
-          {event.summary.split("-").map((part, i, arr) =>
-            i < arr.length - 1 ? (
-              <React.Fragment key={i}>
-                {part.trim()}-
-                <br />
-              </React.Fragment>
-            ) : (
-              part.trim()
-            )
-          )}
+          {event.summary}
         </CardTitle>
       </CardHeader>
 
@@ -553,7 +544,7 @@ function EventCard({
       </CardDescription>
 
       <CardFooter
-        className={`text-white/80 ${compact ? "px-3 pt-2 text-xs" : "px-4 pt-3 text-sm"}`}
+        className={`text-white/80 ${compact ? "px-3 pb-3 pt-1 text-xs" : "px-4 pb-4 pt-1 text-sm"}`}
       >
         {startTime && endTime ? `${startTime} - ${endTime}` : "Tid saknas"}
       </CardFooter>
