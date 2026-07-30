@@ -23,7 +23,7 @@ type CardData = {
 }
 
 const cards: CardData[] = [
-  { id: "1", name: "Cheif Wade P Sam", image: "/cards/Tray.png", password: "LOCALHOSTHOST" , description: `En gång vandrade han över kosmiska slätter där stjärnbilderna själva testade hans styrka. 
+  { id: "1", name: "Cheif Wade P Sam", image: "/cards/Sam.pdf", password: "LOCALHOSTHOST" , description: `En gång vandrade han över kosmiska slätter där stjärnbilderna själva testade hans styrka. 
                     Oxens kraft rann genom hans blod – tålamod som ett berg, styrka som en storm, och envishet över allting som inte betydde någonting.
                     Och när mörkret rörde sig – rörde sig också Chief Wade P Sam.
                     Han anlände utan förvarning.
@@ -32,7 +32,7 @@ const cards: CardData[] = [
                     Energin tung som staven han själv höll i.
 `},
   
-  { id: "2", name: "Moe D. Low", image: "/cards/Gru.png", password: "Moedy Blues", 
+  { id: "2", name: "Moe D. Low", image: "/cards/Moe.pdf", password: "Moedy Blues", 
     description: `Långt ute i kosmos vakade den uråldriga röda dvärgstjärnan över världsalltets ordning. Under Vågens tecken satt Moe D. Low och lyssnade till stjärnornas oroliga viskningar om en obalans på jorden. 
                   Mörkret hade i hemlighet samlat sina krafter där för att släcka Nollans gnista och sprida kaos. 
                   När harmonin på den lilla blå planeten plötsligt vägrade gå exakt jämnt ut kallades den vise vicen ner från himlavalvet för att ta hand om de brutna resterna. 
@@ -41,26 +41,26 @@ const cards: CardData[] = [
                   Med sin mantel kommer den vise att väva ett sprakande rött norrsken som ska driva bort skuggorna och omsluta Nollan i trygghet, kanske.
 `},
   
-  { id: "3", name: "Neah B. Louza", image: "/cards/Mary.png", password: "etintrof", description: `Neah B. Louza föddes i stjärntecknet fiskarna under det röda norrskenets dans, på en kväll när himlen var jätte jätte jätte jätte fin. 
+  { id: "3", name: "Neah B. Louza", image: "/cards/Neah.pdf", password: "etintrof", description: `Neah B. Louza föddes i stjärntecknet fiskarna under det röda norrskenets dans, på en kväll när himlen var jätte jätte jätte jätte fin. 
                     Egentligen vet ingen riktigt varför just Neah blev född i fiskarnas tecken. Kanske för att universum tyckte att någon behövde vara disträ, drömmande och smått klumpig på samma gång. Eller kanske ingen anledning alls.
                     Neah är universums självutnämnda expert på att stirra ut i tomma intet. Hon kan stå i jätte jätte jätte jätte många minuter medan hon funderar högt på livets viktiga frågor, som varför kometer inte har smak eller om meteorer egentligen är rymdens popcorn. 
                     Hennes mantel är alltid ett potentiellt hinder, och ibland snubblar hon över sina egna fötter… Men det är okej, någon måste ju göra universum lite mer underhållande.
                     Disträ? Absolut. Förrvirrad? Definitivt. Charmig? Oerhört. Hon kan börja gå åt ett håll och sluta i ett helt annat, mitt i en mening om spiraler av stjärnstoft, och ändå hitta exakt det som behövs. Nollan kan alltid lita på att hon är där för att visa vägen, även om det tar tio minuter att komma dit... 
   ` },
   
-  { id: "4", name: "Ray. L. Wade", image: "/cards/Cloe.png", password: "DivineBeastDancingLionofficialsoundtrack", description: `Ray L. Wade är bara mästare på en sak: Att vara förvirrad. 
+  { id: "4", name: "Ray. L. Wade", image: "/cards/Ray.pdf", password: "DivineBeastDancingLionofficialsoundtrack", description: `Ray L. Wade är bara mästare på en sak: Att vara förvirrad. 
                     Om en väg delar sig i två kommer Ray utan tvekan gå åt ett tredje håll. Om någon frågar honom vad klockan är, svarar han ofta något i stil med: “Ja, jag tycker också att logistik ska ha ett eget festeri.” 
                     Det är inte att han försöker vara filosofisk, han är bara dummare än vad han ser ut. Eller så är han precis lika dum som han ser ut. 
                     Trots sin brist på riktning, logik och ibland verklighetsförankring fortsätter Ray L. Wade sin resa från den röda dvärgen, oftast åt fel håll, men alltid med full övertygelse.
 `},
   
-  { id: "5", name: "Blenda A Lay", image: "/cards/Ace.png", password: "Kopierat" ,description: `Som kräfta i stjärntecken finns en mjukare sida i Blenda. 
+  { id: "5", name: "Blenda A Lay", image: "/cards/Blenda.pdf", password: "Kopierat" ,description: `Som kräfta i stjärntecken finns en mjukare sida i Blenda. 
                     Hon är lojal, beskyddande och bryr sig mycket om Nollan. Hon minns små detaljer, kollar hur folk mår och kan vara oväntat eftertänksam mitt i allt stoj. 
                     Men den mjukheten ska inte misstas för svaghet. Under den röda manteln finns en uråldrig kraft, formad av norrskenets ljus och 794 år av att vaka över Nollan. 
                     Blenda är den som står kvar när andra tvekar, den som skrattar högst men också märker först när någon blir tyst. Blenda tycker om saker som är god design. Hon rör sig aldrig utan sin spork. 
 `},
   
-  { id: "6", name: "Wayle Lough P", image: "/cards/Vicki.png", password: "DoItAgain();", 
+  { id: "6", name: "Wayle Lough P", image: "/cards/Wayle.pdf", password: "DoItAgain();", 
     description: `Wayle tror att saker händer honom om och om och om och om och om och om igen. Till exempel så hade Wayle en dag då Wayle skulle gå och köpa en ananas. 
                   Så Wayle gick till Wayles jätte jätte jätte favorit ananas butik. Där köpte Wayle en ananas och gick hem. Väl hemma tittade Wayle på ananasen och tänkte att det här va för lite ananaser.
                   Så Wayle gick till Wayles jätte jätte jätte favorit ananas butik. Där köpte Wayle en till ananas och gick hem. Väl hemma tittade Wayle på Wayles ananaser och tänkte att det här va för lite ananaser.
@@ -68,7 +68,7 @@ const cards: CardData[] = [
                   Så Wayle gick till Wayles jätte jätte jätte favorit ananas butik. Där köpte Wayle en till ananas och gick hem. Väl hemma tittade Wayle på Wayles ananaser och tänkte att det här är ett bra antal ananaser. Då drog Wayle en snabb breakdance och gick vidare med Wayles dag.
 `},
   
-  { id: "7", name: "Kong Kurtinator", image: "/cards/Kong.png", password: "URAQTPI", 
+  { id: "7", name: "Kong Kurtinator", image: "/cards/Kong.pdf", password: "URAQTPI", 
     description: `När det röda norrskenet skapade stjärntecknen föddes Vattumannen – stjärnbilden för visionärer, uppfinnare och de som alltid tror att de är ett steg från ett stort genombrott.
                   Ur denna stjärnbild steg Kong Kurtinator fram. Kong bär ett så enormt hår och skägg att hela hans ansikte är täckt. Ingen har någonsin sett hans ögon. Inte ens Kong själv.
                   Men som en sann Vattuman ser han detta inte som ett problem, utan som ett mysterium som bara väntar på en genial lösning.
@@ -82,13 +82,13 @@ const cards: CardData[] = [
                   är fortfarande ett mysterium.
 `},
 
-  { id: "8", name: "Rose P. Anther", image: "/cards/Carly.png", password: "Peanutbutterjelly", description: `I begynnelsen, när universum fortfarande försökte lista ut hur man stavade till “existens”, kom Rose P. Anther ur jungfruns tecken. 
+  { id: "8", name: "Rose P. Anther", image: "/cards/Rose.pdf", password: "Peanutbutterjelly", description: `I begynnelsen, när universum fortfarande försökte lista ut hur man stavade till “existens”, kom Rose P. Anther ur jungfruns tecken. 
                     Ingen vet exakt vad P:et står för, men Rose säger antingen “perfektion” eller “pesto” för att se vem som lyssnar. 
                     Vissa säger att P:et står för “perfektionist”. Anledningen är att Rose inte kan motstå att ändra planeternas omloppsbanor lite lite grann då de enligt henne “sitter lite snett”. 
                     Dock håller inte Rose med om det.
 `},
   
-  { id: "9", name: "Stella Tilde", image: "/cards/Ally.png", password: "BURNBOOK", description: `Stella Tilde har alltid haft en magisk energi omkring sig. När hon dök upp ur stjärnbilden Lejonet märkte de andra legionärerna ganska snabbt att det nästan alltid händer något när Stella är i närheten.
+  { id: "9", name: "Stella Tilde", image: "/cards/Stella.pdf", password: "BURNBOOK", description: `Stella Tilde har alltid haft en magisk energi omkring sig. När hon dök upp ur stjärnbilden Lejonet märkte de andra legionärerna ganska snabbt att det nästan alltid händer något när Stella är i närheten.
                     På något sätt lyckas Stella alltid samla folk runt sig. Inte för att hon måste – utan för att det nästan alltid blir roligare när hon är där.
                     De andra legionärerna har märkt att Stella nästan alltid kollar på filmen Mean Girls.
                     Hur många gånger hon sett den är oklart.
@@ -103,7 +103,7 @@ const cards: CardData[] = [
                     då är det bäst att vara redo.
 `},
   
-  { id: "10", name: "Wick Thorfield", image: "/cards/Con Soul.png", password: " puhctekxilef", description: `När Wick föddes under Skorpionens stjärntecken hände något mårkligt. 
+  { id: "10", name: "Wick Thorfield", image: "/cards/Wick.pdf", password: " puhctekxilef", description: `När Wick föddes under Skorpionens stjärntecken hände något mårkligt. 
                      Stjärnornas krafter samlades och en del av deras energi blev en del av Wick. 
                      Med denna gåva kan Wick känna och styra de osynliga krafter som rör sig genom världen. 
                      Wick rör sig sällan utan att veta exakt vart riktningen leder.
@@ -111,7 +111,7 @@ const cards: CardData[] = [
                      När Wick känner sig busig kanske det förekommer att han påverkar sina syskons flow. Men när de frågar så har Wick självklart inget att göra med det.
 `},
   
-  { id: "11", name: "Gloria S. Caye", image: "/cards/Moe.png", password: "snattabananer", description: `Gloria är känd för sin energi. Hon är snabb, fri och alltid nästan på väg mot nästa äventyr. 
+  { id: "11", name: "Gloria S. Caye", image: "/cards/Gloria.pdf", password: "snattabananer", description: `Gloria är känd för sin energi. Hon är snabb, fri och alltid nästan på väg mot nästa äventyr. 
                      Skyttens kraft gör henne orädd och nyfiken. Om något blinkar, glittrar eller ser det minsta spännande ut i skenet är Gloria redan där och kollar vad det är.
                      Hon är den yngsta legionären och det märks ofta. Gloria gillar när saker är roliga och kan nästan inte låta bli att bli glad när något oväntat eller knasigt händer. 
                      Hon tycker helt enkelt världen blir bättre när saker är lite mindre seriösa.
@@ -119,8 +119,23 @@ const cards: CardData[] = [
                      Hon tycker mest att alla borde sikta som henne *högre upp*, annars blir det ganska tråkigt
 `},
   
-  { id: "12", name: "Galileihoo Auf Ugglas", image: "/cards/Getrud.png", password: "Getterärbättreänfår123", description: "" }
+  { id: "12", name: "Galileihoo Auf Ugglas", image: "/cards/Ugglas.pdf", password: "Getterärbättreänfår123", description: "" }
 ]
+
+const cardPdfs: Record<string, string> = {
+  "1": "/cards/Sam.pdf",
+  "2": "/cards/Moe.pdf",
+  "3": "/cards/Neah.pdf",
+  "4": "/cards/Ray.pdf",
+  "5": "/cards/Blenda.pdf",
+  "6": "/cards/Wayle.pdf",
+  "7": "/cards/Kong.pdf",
+  "8": "/cards/Rose.pdf",
+  "9": "/cards/Stella.pdf",
+  "10": "/cards/Wick.pdf",
+  "11": "/cards/Gloria.pdf",
+  "12": "/cards/Ugglas.pdf",
+}
 
 export default function Idolkort() {
   const [inputPassword, setInputPassword] = React.useState("")
@@ -264,17 +279,35 @@ export default function Idolkort() {
 
               return (
                 <CarouselItem key={card.id}>
-                  <Card className="bg-gray-200/5 border border-white/10 backdrop-blur-sm shadow-lg">
-                    <CardContent className="p-4 flex items-center justify-center">
-                      <div className="relative w-full aspect-[60/86] rounded-xl overflow-hidden bg-black/20">
+                  <Card className="border border-white/10 bg-gray-200/5 shadow-lg backdrop-blur-sm">
+                    <CardContent className="flex items-center justify-center p-4">
+                      <div className="relative aspect-[60/86] w-full overflow-hidden rounded-xl bg-black/20">
                         {isUnlocked ? (
-                          <Image
-                            src={card.image}
-                            alt={card.name}
-                            fill
-                            className="object-contain"
-                            unoptimized
-                          />
+                          cardPdfs[card.id] ? (
+                            <a
+                              href={cardPdfs[card.id]}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`Öppna ${card.name} som PDF`}
+                              className="relative block h-full w-full overflow-hidden bg-[#742418] outline-none"
+                            >
+                              <Image
+                                src={cardPdfs[card.id].replace(".pdf", "-preview.png")}
+                                alt={card.name}
+                                fill
+                                className="origin-top-left scale-[1.015] object-cover"
+                                unoptimized
+                              />
+                            </a>
+                          ) : (
+                            <Image
+                              src={card.image}
+                              alt={card.name}
+                              fill
+                              className="object-contain"
+                              unoptimized
+                            />
+                          )
                         ) : (
                           <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white/60 px-4">
                             <p className="text-lg font-semibold mb-2">
