@@ -48,7 +48,7 @@ export default function Home() {
             />
 
             <Link
-              href="https://docs.google.com/forms/d/e/1FAIpQLSfaIeKdbCE-xuRHNWzKdftuczK0ENEj9f3_fvNI33vGV-Zq7Q/viewform?usp=dialog"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSeE4myPo2O7gpitSTox4_AzzWf4hzBw0hOljL5IEHpzPzjSUA/viewform?pli=1"
               target="_blank"
               rel="noopener noreferrer"
               className="
@@ -59,15 +59,16 @@ export default function Home() {
                 rounded-full
                 bg-white
                 px-8 py-3
-                font-semibold text-black
+                text-center font-semibold text-black
                 transition
                 hover:bg-neutral-200
                 focus-visible:outline-none
                 focus-visible:ring-2
                 focus-visible:ring-white
+                whitespace-pre-wrap
               "
             >
-              Nollankäten
+              Anmälan <br /> Filmvisning på CNEMA
             </Link>
           </section>
 

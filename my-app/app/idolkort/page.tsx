@@ -119,7 +119,7 @@ const cards: CardData[] = [
                      Hon tycker mest att alla borde sikta som henne *högre upp*, annars blir det ganska tråkigt
 `},
   
-  { id: "12", name: "Galileihoo Auf Ugglas", image: "/cards/Ugglas.pdf", password: "Getterärbättreänfår123", description: "" }
+  { id: "12", name: "Galileihoo Auf Ugglas", image: "/cards/Ugglas.pdf", password: "RIPmygrannyshegothitbyabazooka", description: "" }
 ]
 
 const cardPdfs: Record<string, string> = {
