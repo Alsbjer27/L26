@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import TodayEvents from "@/components/calender/TodayEvents";
+import ClientForm from "@/components/ClientForm";
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
         <div
           className="
             grid grid-cols-1
-            lg:grid-cols-[minmax(0,1fr)_minmax(280px,1.15fr)_minmax(0,1fr)]
+            lg:grid-cols-2
             gap-8 lg:gap-10 xl:gap-14
             items-start
           "
@@ -25,7 +25,7 @@ export default function Home() {
           <section
             className="
               order-1
-              lg:order-2
+              lg:order-1
               flex flex-col
               items-center justify-center
               min-w-0
@@ -46,64 +46,19 @@ export default function Home() {
                 object-contain
               "
             />
-
-            <Link
-              href="https://docs.google.com/forms/d/e/1FAIpQLSeE4myPo2O7gpitSTox4_AzzWf4hzBw0hOljL5IEHpzPzjSUA/viewform?pli=1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                mt-4
-                inline-flex
-                min-h-12
-                items-center justify-center
-                rounded-full
-                bg-white
-                px-8 py-3
-                text-center font-semibold text-black
-                transition
-                hover:bg-neutral-200
-                focus-visible:outline-none
-                focus-visible:ring-2
-                focus-visible:ring-white
-                whitespace-pre-wrap
-              "
-            >
-              Anmälan <br /> Filmvisning på CNEMA
-            </Link>
           </section>
 
-          {/* MT: second on mobile, left on desktop */}
+          {/* Client information form */}
           <section
             className="
               order-2
-              lg:order-1
+              lg:order-2
               w-full
-              max-w-md
+              max-w-xl
               mx-auto
             "
           >
-            <TodayEvents
-              query="MT"
-              title="MT idag"
-              titleClassName="text-orange-200"
-            />
-          </section>
-
-          {/* GDK: third on mobile, right on desktop */}
-          <section
-            className="
-              order-3
-              lg:order-3
-              w-full
-              max-w-md
-              mx-auto
-            "
-          >
-            <TodayEvents
-              query="GDK"
-              title="GDK idag"
-              titleClassName="text-green-200"
-            />
+            <ClientForm />
           </section>
         </div>
 
