@@ -13,14 +13,7 @@ export default function Home() {
           pb-12
         "
       >
-        <div
-          className="
-            grid grid-cols-1
-            lg:grid-cols-2
-            gap-8 lg:gap-10 xl:gap-14
-            items-start
-          "
-        >
+        
           {/* CENTER: first on mobile, middle on desktop */}
           <section
             className="
@@ -49,7 +42,7 @@ export default function Home() {
           </section>
 
           {/* Client information form */}
-          <section
+          {/* <section
             className="
               order-2
               lg:order-2
@@ -59,8 +52,8 @@ export default function Home() {
             "
           >
             <ClientForm />
-          </section>
-        </div>
+          </section> */}
+        
 
       </div>
     </main>
